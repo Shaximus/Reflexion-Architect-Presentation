@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "THE ARCHITECT",
+      "hasCanvas": false,
+      "bodyTextLen": 268,
+      "bodyTextHash": "9b072f24aaf3ea5cb05cb465f7c2727e9105e86b328f4f00175b8d2c19852a36",
+      "bodyTextPrefix": "HILLSBOROUGH BAPTIST CHURCH · AUGUST 24, 2026 THE ARCHITECT “All",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "THE ARCHITECT",
+      "hasCanvas": false,
+      "bodyTextLen": 268,
+      "bodyTextHash": "9b072f24aaf3ea5cb05cb465f7c2727e9105e86b328f4f00175b8d2c19852a36",
+      "bodyTextPrefix": "HILLSBOROUGH BAPTIST CHURCH · AUGUST 24, 2026 THE ARCHITECT “All",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

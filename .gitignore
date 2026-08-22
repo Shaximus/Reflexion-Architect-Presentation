@@ -1,0 +1,26 @@
+# dependencies
+node_modules/
+
+# generated / build output
+dist/
+.vite/
+coverage/
+playwright-report/
+test-results/
+.vercel/
+
+# secrets (defensive — none present in this import)
+.env
+.env.*
+*.pem
+*.key
+id_rsa
+id_dsa
+id_ecdsa
+
+# local handoff preservation: original Grok workspace ZIP, kept on disk but not committed
+_handoff/
+
+# misc
+*.log
+.DS_Store

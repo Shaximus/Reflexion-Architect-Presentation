@@ -1,0 +1,15 @@
+import { chromium } from "playwright";
+const browser = await chromium.launch({ args: ["--no-sandbox"] });
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+await page.goto("http://127.0.0.1:8080/", { waitUntil: "networkidle" });
+await page.getByRole("button", { name: /enter the substrate/i }).click();
+await page.waitForFunction(() => typeof window.__setScene === "function");
+await page.evaluate(() => window.__setScene(6));
+await page.waitForTimeout(800);
+const vis = page.getByRole("button", { name: /toggle 3d or 2d/i });
+if ((await vis.innerText()).trim().toLowerCase() === "3d") await vis.click();
+await page.waitForTimeout(700);
+await page.screenshot({ path: "/workspace/screenshots/arcs-07-2d.png" });
+await page.screenshot({ path: "/workspace/screenshots/arcs-07-explore-2d.png" });
+await browser.close();
+console.log("2d recaptured");
