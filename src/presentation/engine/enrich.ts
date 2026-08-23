@@ -1,5 +1,6 @@
 import { ACTS, SCENES } from "./content";
 import { DEEP } from "./details-deep";
+import { ARCHIVE_DEEP } from "./deep";
 import { ARC_CURTIS, ARC_LANES, ARC_THRESHOLD } from "./arc-lanes";
 import { eid, type Accent, type Detail, type Edge, type Entity, type LayoutNode, type Renderer, type Scene, type SceneModel, type SourceRef, type Step, type VisMode } from "./types";
 
@@ -38,16 +39,56 @@ function fromRows(scene: Scene): Entity[] {
   }));
 }
 
+function cleanHeader(header: string | undefined): string {
+  return (header ?? "").replace(/\s+/g, " ").trim();
+}
+
 function fromTable(scene: Scene): Entity[] {
   if (!scene.table) return [];
-  return scene.table.rows.map((row) => ({
-    id: eid(scene.slug, row[0] ?? "row"),
-    label: row[0] ?? "",
-    subtitle: row.slice(1).join("  ·  "),
-    accent: "gold" as Accent,
-    summary: row.slice(1),
-    group: "row",
-  }));
+  const { headers, rows } = scene.table;
+  const labelHeader = cleanHeader(headers[0]);
+  return rows.map((row) => {
+    const cells = row.slice(1);
+    const columns = cells.map((text, i) => ({ header: cleanHeader(headers[i + 1]), text }));
+    return {
+      id: eid(scene.slug, row[0] ?? "row"),
+      label: row[0] ?? "",
+      // The row label's own column header. Never join the data cells into one
+      // string — merging opposing columns erases the table's structure.
+      subtitle: labelHeader || undefined,
+      accent: "gold" as Accent,
+      // Raw cells, same order/indices as before, for consumers that address
+      // them positionally (e.g. Evidence3D reads summary[1] as the verdict).
+      summary: cells,
+      columns: columns.some((c) => c.header) ? columns : undefined,
+      group: "row",
+    };
+  });
+}
+
+/**
+ * Lowest-precedence details for table rows: one section per data column,
+ * headed by that column's header, so the Deep Dive keeps the table's
+ * column identity instead of flattening both sides into one paragraph.
+ */
+function tableDetails(scene: Scene): Record<string, Detail> {
+  if (!scene.table) return {};
+  const { headers, rows } = scene.table;
+  const labelHeader = cleanHeader(headers[0]);
+  const out: Record<string, Detail> = {};
+  for (const row of rows) {
+    const label = row[0] ?? "";
+    const cells = row.slice(1);
+    if (!cells.length) continue;
+    out[eid(scene.slug, label || "row")] = {
+      overview: labelHeader ? `${labelHeader} — ${label}` : undefined,
+      sections: cells.map((body, i) => ({
+        heading: cleanHeader(headers[i + 1]) || `Column ${i + 2}`,
+        body,
+      })),
+    };
+  }
+  return out;
 }
 
 function grid(ids: string[], cols: number, ox = 18, oy = 22, dx = 28, dy = 28): LayoutNode[] {
@@ -771,8 +812,9 @@ export function modelOf(scene: Scene): SceneModel {
     seen.add(e.id);
     return true;
   });
-  const details = { ...(spec.details ?? {}), ...(deep?.details ?? {}) };
-  const sources = { ...(spec.sources ?? {}), ...(deep?.sources ?? {}) };
+  const archive = ARCHIVE_DEEP[scene.slug];
+  const details = { ...tableDetails(scene), ...(spec.details ?? {}), ...(deep?.details ?? {}), ...(archive?.details ?? {}) };
+  const sources = { ...(spec.sources ?? {}), ...(deep?.sources ?? {}), ...(archive?.sources ?? {}) };
   if (scene.slug === "arcs") {
     for (const lane of ARC_LANES) {
       const parentSrc = sources[lane.heroId];

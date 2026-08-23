@@ -22,16 +22,24 @@ export function Help() {
   const toggle = useDeck((s) => s.toggleHelp);
   if (!open) return null;
   return (
-    <div data-hud className="pointer-events-auto absolute inset-0 z-20 flex items-center justify-center bg-void/85 p-4 backdrop-blur-md">
-      <div className="w-full max-w-lg rounded-2xl border border-border bg-surface p-6">
+    <div
+      data-hud
+      className="overlay-enter pointer-events-auto absolute inset-0 z-20 flex items-center justify-center bg-void/85 p-4 backdrop-blur-md"
+    >
+      <div className="overlay-panel-enter w-full max-w-lg rounded-2xl border border-border bg-surface p-6 shadow-[0_24px_90px_rgb(0_0_0/0.6)]">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="font-display text-2xl tracking-wide">How to steer</h2>
-          <button type="button" onClick={toggle} className="min-h-11 text-sm text-muted hover:text-fg">
+          <button
+            type="button"
+            onClick={toggle}
+            className="min-h-11 text-sm text-muted hover:text-fg"
+          >
             Close
           </button>
         </div>
         <p className="mb-5 text-base leading-relaxed text-muted">
-          This is an explorable model of a system. 3D is embodied intuition. 2D is structural precision. Deep Dive is explanation. Source is provenance.
+          This is an explorable model of a system. 3D is embodied intuition. 2D is structural
+          precision. Deep Dive is explanation. Source is provenance.
         </p>
         <ul className="space-y-3">
           {KEYS.map(([k, v]) => (
@@ -42,7 +50,8 @@ export function Help() {
           ))}
         </ul>
         <p className="mt-5 text-sm text-dim">
-          Sunday driver: arrows through the acts. Nested containers, Earth is the Game, Fusion, SHENRON, Referee, then Genesis.
+          Sunday driver: arrows through the acts. Nested containers, Earth is the Game, Fusion,
+          SHENRON, Referee, then Genesis.
         </p>
       </div>
     </div>

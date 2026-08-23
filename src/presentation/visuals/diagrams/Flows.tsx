@@ -21,9 +21,17 @@ export function SequenceFlow({
   const nodes = steps?.length
     ? steps.map((s, i) => {
         const match =
-          entities.find((e) => e.id.includes(s.id) || e.label.toLowerCase().includes(s.label.toLowerCase().split(" ")[0] ?? "")) ??
-          pipe[i];
-        return { id: match?.id, label: s.label, sub: match?.subtitle, accent: match?.accent ?? ("gold" as const) };
+          entities.find(
+            (e) =>
+              e.id.includes(s.id) ||
+              e.label.toLowerCase().includes(s.label.toLowerCase().split(" ")[0] ?? ""),
+          ) ?? pipe[i];
+        return {
+          id: match?.id,
+          label: s.label,
+          sub: match?.subtitle,
+          accent: match?.accent ?? ("gold" as const),
+        };
       })
     : pipe.map((e) => ({ id: e.id, label: e.label, sub: e.subtitle, accent: e.accent }));
   return (
@@ -40,11 +48,20 @@ export function SequenceFlow({
                   if (n.id) onSelect(n.id);
                   onStep?.(i);
                 }}
-                className={cn("flex w-full flex-col justify-center rounded-2xl border bg-surface/90 px-3 py-4 text-left", dim && "opacity-25")}
-                style={{ borderColor: selected ? ACCENT_HEX[n.accent as keyof typeof ACCENT_HEX] : "var(--color-border)" }}
+                className={cn(
+                  "flex w-full flex-col justify-center rounded-2xl border bg-surface/90 px-3 py-4 text-left",
+                  dim && "opacity-30",
+                )}
+                style={{
+                  borderColor: selected
+                    ? ACCENT_HEX[n.accent as keyof typeof ACCENT_HEX]
+                    : "var(--color-border)",
+                }}
               >
                 <div className="font-mono text-xs text-gold">{String(i + 1).padStart(2, "0")}</div>
-                <div className="mt-1 font-display text-base tracking-wide sm:text-lg">{n.label}</div>
+                <div className="mt-1 font-display text-base tracking-wide sm:text-lg">
+                  {n.label}
+                </div>
                 {n.sub && <div className="mt-1 text-sm text-muted">{n.sub}</div>}
               </button>
               {i < nodes.length - 1 && (
@@ -56,7 +73,9 @@ export function SequenceFlow({
           );
         })}
       </div>
-      {steps && steps.length > 0 && <StepStrip steps={steps} activeStep={activeStep} onStep={(i) => onStep?.(i)} />}
+      {steps && steps.length > 0 && (
+        <StepStrip steps={steps} activeStep={activeStep} onStep={(i) => onStep?.(i)} />
+      )}
     </div>
   );
 }
@@ -92,7 +111,10 @@ export function EventPath({
                 onSelect(selected && selectedId === p.id ? null : p.id);
                 onStep?.(i);
               }}
-              className={cn("rounded-2xl border bg-surface/90 p-4 text-left", dim && "opacity-25")}
+              className={cn(
+                "flex flex-col rounded-2xl border bg-surface/90 p-4 text-left",
+                dim && "opacity-30",
+              )}
               style={{ borderColor: selected ? ACCENT_HEX[p.accent] : "var(--color-border)" }}
             >
               <div className="font-mono text-xs tracking-widest text-gold uppercase">{p.label}</div>
@@ -133,7 +155,9 @@ export function CascadeStack({
   onSelect: (id: string | null) => void;
 }) {
   const order = ["strategic", "tactical", "deterministic", "doctrine"];
-  const items = order.map((k) => entities.find((e) => e.id.includes(k))).filter(Boolean) as Entity[];
+  const items = order
+    .map((k) => entities.find((e) => e.id.includes(k)))
+    .filter(Boolean) as Entity[];
   const list = items.length ? items : entities;
   return (
     <div className="flex h-full min-h-0 flex-col justify-center gap-3 p-2">
@@ -145,7 +169,10 @@ export function CascadeStack({
             key={e.id}
             type="button"
             onClick={() => onSelect(selected ? null : e.id)}
-            className={cn("rounded-2xl border bg-surface/90 px-5 py-4 text-left", dim && "opacity-25")}
+            className={cn(
+              "flex flex-col rounded-2xl border bg-surface/90 px-5 py-4 text-left",
+              dim && "opacity-30",
+            )}
             style={{
               borderColor: selected ? ACCENT_HEX[e.accent] : "var(--color-border)",
               marginInline: `${i * 4}%`,
@@ -175,7 +202,9 @@ export function EarLoop({
   const items = entities.filter((e) => e.group !== "stat");
   return (
     <div className="flex h-full min-h-0 flex-col justify-center gap-3 p-2">
-      <p className="text-center font-mono text-xs tracking-[0.2em] text-gold uppercase">closed loop — each node is a teammate</p>
+      <p className="text-center font-mono text-xs tracking-[0.2em] text-gold uppercase">
+        closed loop — each node is a teammate
+      </p>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         {items.map((e, i) => {
           const selected = selectedId === e.id;
@@ -185,7 +214,10 @@ export function EarLoop({
               key={e.id}
               type="button"
               onClick={() => onSelect(selected ? null : e.id)}
-              className={cn("rounded-2xl border bg-surface/90 p-5 text-left", dim && "opacity-25")}
+              className={cn(
+                "flex flex-col rounded-2xl border bg-surface/90 p-5 text-left",
+                dim && "opacity-30",
+              )}
               style={{ borderColor: selected ? ACCENT_HEX[e.accent] : "var(--color-border)" }}
             >
               <div className="font-mono text-xs text-gold">{String(i + 1).padStart(2, "0")}</div>
@@ -246,7 +278,13 @@ export function GovernorLadder({
               <div className="font-mono text-xs text-gold">STATE {i + 1}</div>
               <div className="mt-1 font-display text-base sm:text-lg">{r.label}</div>
               <p className="mt-2 text-sm text-muted">
-                {i === 0 ? "full tactical reasoning" : i === 1 ? "cached plan + cheap nav" : i === 2 ? "bounded anti-kite" : "disengage · fortify"}
+                {i === 0
+                  ? "full tactical reasoning"
+                  : i === 1
+                    ? "cached plan + cheap nav"
+                    : i === 2
+                      ? "bounded anti-kite"
+                      : "disengage · fortify"}
               </p>
             </button>
           );
@@ -261,7 +299,10 @@ export function GovernorLadder({
               key={c.id}
               type="button"
               onClick={() => onSelect(selected ? null : c.id)}
-              className={cn("rounded-2xl border bg-surface/90 p-4 text-left", dim && "opacity-25")}
+              className={cn(
+                "flex flex-col rounded-2xl border bg-surface/90 p-4 text-left",
+                dim && "opacity-30",
+              )}
               style={{ borderColor: selected ? ACCENT_HEX[c.accent] : "var(--color-border)" }}
             >
               <div className="font-display text-lg tracking-wide">{c.label}</div>
@@ -309,7 +350,10 @@ export function AurisPipe({
                 onSelect(selected && selectedId === p.id ? null : p.id);
                 onStep?.(i);
               }}
-              className={cn("rounded-2xl border bg-surface/90 p-3 text-left", dim && "opacity-25")}
+              className={cn(
+                "flex flex-col rounded-2xl border bg-surface/90 p-3 text-left",
+                dim && "opacity-30",
+              )}
               style={{ borderColor: selected ? ACCENT_HEX[p.accent] : "var(--color-border)" }}
             >
               <div className="font-mono text-xs text-gold">{p.label}</div>
@@ -392,7 +436,10 @@ export function GateFlow({
               key={c.id}
               type="button"
               onClick={() => onSelect(selected ? null : c.id)}
-              className={cn("rounded-2xl border bg-surface/90 p-4 text-left", dim && "opacity-25")}
+              className={cn(
+                "flex flex-col rounded-2xl border bg-surface/90 p-4 text-left",
+                dim && "opacity-30",
+              )}
               style={{ borderColor: selected ? ACCENT_HEX[c.accent] : "var(--color-border)" }}
             >
               <div className="font-display text-lg tracking-wide">{c.label}</div>

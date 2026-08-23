@@ -18,22 +18,32 @@ export function DetailDrawer() {
   const related = model.edges.filter((e) => e.from === selected.id || e.to === selected.id);
 
   return (
-    <div data-hud className="pointer-events-auto absolute inset-0 z-30 flex justify-end bg-void/70 backdrop-blur-sm">
+    <div
+      data-hud
+      className="overlay-enter pointer-events-auto absolute inset-0 z-30 flex justify-end bg-void/70 backdrop-blur-sm"
+    >
       <div
-        className="flex h-full w-full max-w-xl flex-col overflow-y-auto border-l border-border bg-surface p-6 sm:p-8"
+        className="drawer-enter flex h-full w-full max-w-xl flex-col overflow-y-auto border-l border-border bg-surface p-6 shadow-[-24px_0_80px_rgb(0_0_0/0.55)] sm:p-8"
         style={{ touchAction: "pan-y" }}
         role="dialog"
         aria-label="Deep dive"
       >
         <div className="mb-6 flex items-start justify-between gap-4">
           <div>
-            <p className="font-mono text-xs tracking-[0.2em] uppercase" style={{ color: ACCENT_HEX[selected.accent] }}>
+            <p
+              className="font-mono text-xs tracking-[0.2em] uppercase"
+              style={{ color: ACCENT_HEX[selected.accent] }}
+            >
               Layer 2 · Machine open
             </p>
             <h2 className="mt-2 font-display text-2xl tracking-wide">{selected.label}</h2>
             {selected.subtitle && <p className="mt-1 text-base text-muted">{selected.subtitle}</p>}
           </div>
-          <button type="button" onClick={close} className="min-h-11 text-sm text-muted hover:text-fg">
+          <button
+            type="button"
+            onClick={close}
+            className="min-h-11 text-sm text-muted hover:text-fg"
+          >
             Close
           </button>
         </div>
@@ -46,14 +56,20 @@ export function DetailDrawer() {
           )}
           {detail?.sections?.map((sec) => (
             <div key={sec.heading}>
-              <h3 className="font-mono text-xs tracking-[0.16em] text-gold uppercase">{sec.heading}</h3>
+              <h3 className="font-mono text-xs tracking-[0.16em] text-gold uppercase">
+                {sec.heading}
+              </h3>
               <p className="mt-2 text-fg/90">{sec.body}</p>
             </div>
           ))}
-          <div>
-            <h3 className="font-mono text-xs tracking-[0.16em] text-gold uppercase">Mechanism</h3>
-            <p className="mt-2 text-fg/90">{detail?.mechanism ?? selected.summary.join(" ")}</p>
-          </div>
+          {(detail?.mechanism || !selected.columns) && (
+            <div>
+              <h3 className="font-mono text-xs tracking-[0.16em] text-gold uppercase">Mechanism</h3>
+              {/* Column-structured entities never fall back to joining their
+                  cells into one string — that would merge opposing columns. */}
+              <p className="mt-2 text-fg/90">{detail?.mechanism ?? selected.summary.join(" ")}</p>
+            </div>
+          )}
           {detail?.structure && (
             <div>
               <h3 className="font-mono text-xs tracking-[0.16em] text-gold uppercase">Structure</h3>
@@ -62,7 +78,9 @@ export function DetailDrawer() {
           )}
           {detail?.causeEffect && detail.causeEffect.length > 0 && (
             <div>
-              <h3 className="font-mono text-xs tracking-[0.16em] text-gold uppercase">Cause → Effect</h3>
+              <h3 className="font-mono text-xs tracking-[0.16em] text-gold uppercase">
+                Cause → Effect
+              </h3>
               <ul className="mt-2 space-y-2">
                 {detail.causeEffect.map((line) => (
                   <li key={line} className="text-fg/90">
@@ -80,7 +98,10 @@ export function DetailDrawer() {
                   const parts = line.split("↔").map((s) => s.trim());
                   if (parts.length === 2) {
                     return (
-                      <li key={line} className="grid grid-cols-[1fr_auto_1fr] items-baseline gap-2 text-fg/90">
+                      <li
+                        key={line}
+                        className="grid grid-cols-[1fr_auto_1fr] items-baseline gap-2 text-fg/90"
+                      >
                         <span>{parts[0]}</span>
                         <span className="font-mono text-xs text-gold">↔</span>
                         <span>{parts[1]}</span>
@@ -98,7 +119,9 @@ export function DetailDrawer() {
           )}
           {detail?.implications && detail.implications.length > 0 && (
             <div>
-              <h3 className="font-mono text-xs tracking-[0.16em] text-gold uppercase">Implications</h3>
+              <h3 className="font-mono text-xs tracking-[0.16em] text-gold uppercase">
+                Implications
+              </h3>
               <ul className="mt-2 space-y-2">
                 {detail.implications.map((line) => (
                   <li key={line} className="text-fg/90">
@@ -111,18 +134,35 @@ export function DetailDrawer() {
           {selected.summary.length > 0 && (
             <div>
               <h3 className="font-mono text-xs tracking-[0.16em] text-gold uppercase">Layer 1</h3>
-              <ul className="mt-2 space-y-2">
-                {selected.summary.map((line) => (
-                  <li key={line} className="text-fg/90">
-                    {line}
-                  </li>
-                ))}
-              </ul>
+              {selected.columns ? (
+                <div className="mt-2 space-y-3">
+                  {selected.columns.map((c, i) => (
+                    <div key={`${c.header}-${i}`}>
+                      {c.header && (
+                        <p className="font-mono text-[0.6875rem] tracking-[0.16em] text-muted uppercase">
+                          {c.header}
+                        </p>
+                      )}
+                      <p className="text-fg/90">{c.text}</p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <ul className="mt-2 space-y-2">
+                  {selected.summary.map((line) => (
+                    <li key={line} className="text-fg/90">
+                      {line}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           )}
           {detail?.residual && (
             <div>
-              <h3 className="font-mono text-xs tracking-[0.16em] text-crimson uppercase">Boundary / residual</h3>
+              <h3 className="font-mono text-xs tracking-[0.16em] text-crimson uppercase">
+                Boundary / residual
+              </h3>
               <p className="mt-2 text-fg/90">{detail.residual}</p>
             </div>
           )}
@@ -141,7 +181,11 @@ export function DetailDrawer() {
                   const other = entityById(model, otherId);
                   return (
                     <li key={`${e.from}-${e.to}`}>
-                      <button type="button" className="text-left text-gold hover:underline" onClick={() => selectEntity(otherId)}>
+                      <button
+                        type="button"
+                        className="text-left text-gold hover:underline"
+                        onClick={() => selectEntity(otherId)}
+                      >
                         {other?.label ?? otherId}
                       </button>
                       <span className="text-muted"> — {e.label}</span>

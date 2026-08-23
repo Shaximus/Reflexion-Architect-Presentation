@@ -1,6 +1,7 @@
 import type { Scene } from "./types";
+import { insertLadder, recomputeActs } from "./ladder-operator";
 
-export const ACTS = [
+const BASE_ACTS = [
   { id: 1, name: "The Architect", range: [0, 6] as const },
   { id: 2, name: "The Work", range: [7, 12] as const },
   { id: 3, name: "The Orbit", range: [13, 16] as const },
@@ -8,7 +9,7 @@ export const ACTS = [
   { id: 5, name: "The Prophecy", range: [23, 24] as const },
 ] as const;
 
-export const SCENES: Scene[] = [
+const BASE_SCENES: Scene[] = [
   {
     id: 0,
     slug: "title",
@@ -1047,5 +1048,10 @@ export const SCENES: Scene[] = [
     footer: "Reflexion Software · The Pentarchy · August 24, 2026 · Hillsborough Baptist Church",
   },
 ];
+
+// The Ladder Operator module splices into Act IV and renumbers downstream.
+// Existing scene literals above are never edited — insertion only.
+export const SCENES: Scene[] = insertLadder(BASE_SCENES);
+export const ACTS = recomputeActs(SCENES, BASE_ACTS);
 
 export const SCENE_COUNT = SCENES.length;

@@ -18,17 +18,45 @@ export function TitleHero({
   return (
     <div className="relative flex h-full min-h-[18rem] items-center justify-center">
       <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden>
-        <circle cx="50" cy="48" r="44" fill="none" stroke="#e4c36b" strokeWidth="0.35" opacity="0.55" />
-        <circle cx="50" cy="48" r="32" fill="none" stroke="#4ecdc4" strokeWidth="0.32" opacity="0.5" />
-        <circle cx="50" cy="48" r="20" fill="none" stroke="#e94560" strokeWidth="0.45" opacity="0.8" />
-        <circle cx="50" cy="48" r="3.4" fill="#e94560" />
+        <circle
+          cx="50"
+          cy="48"
+          r="44"
+          fill="none"
+          stroke="#e4c36b"
+          strokeWidth="0.35"
+          opacity="0.55"
+        />
+        <circle
+          cx="50"
+          cy="48"
+          r="32"
+          fill="none"
+          stroke="#4ecdc4"
+          strokeWidth="0.32"
+          opacity="0.5"
+        />
+        <circle
+          cx="50"
+          cy="48"
+          r="20"
+          fill="none"
+          stroke="#e94560"
+          strokeWidth="0.45"
+          opacity="0.8"
+        />
+        <circle cx="50" cy="48" r="1.8" fill="#e94560" opacity="0.45" />
       </svg>
       <div className="relative z-10 max-w-3xl px-4 text-center">
         {quote && (
-          <p className="font-display text-2xl leading-snug text-crimson italic sm:text-4xl lg:text-5xl">“{quote}”</p>
+          <p className="font-display text-2xl leading-snug text-crimson italic sm:text-4xl lg:text-5xl">
+            “{quote}”
+          </p>
         )}
         {attribution && <p className="mt-4 text-base text-muted sm:text-lg">{attribution}</p>}
-        {footer && <p className="mt-6 font-mono text-xs tracking-[0.22em] text-gold uppercase">{footer}</p>}
+        {footer && (
+          <p className="mt-6 font-mono text-xs tracking-[0.22em] text-gold uppercase">{footer}</p>
+        )}
       </div>
     </div>
   );
@@ -48,7 +76,7 @@ export function PlanetRing({
   const n = worlds.length || 1;
   return (
     <svg viewBox="0 0 100 100" className="h-full w-full" onClick={() => onSelect(null)}>
-      <circle cx="50" cy="48" r="22" fill="none" stroke="#2a2a33" strokeWidth="0.3" />
+      <circle cx="50" cy="48" r="22" fill="none" stroke="#32323e" strokeWidth="0.3" />
       <g
         className={core ? "cursor-pointer" : undefined}
         onClick={(ev) => {
@@ -57,7 +85,14 @@ export function PlanetRing({
         }}
       >
         <circle cx="50" cy="48" r={selectedId === core?.id ? 6 : 4.4} fill="#e4c36b" />
-        <text x="50" y="49.2" textAnchor="middle" fill="#07070a" fontSize="2.1" fontFamily="Cinzel, serif">
+        <text
+          x="50"
+          y="49.2"
+          textAnchor="middle"
+          fill="#07070a"
+          fontSize="2.1"
+          fontFamily="Cinzel, serif"
+        >
           NEXT
         </text>
       </g>
@@ -78,13 +113,28 @@ export function PlanetRing({
               onSelect(selected ? null : e.id);
             }}
           >
-            <line x1="50" y1="48" x2={x} y2={y} stroke={hex} strokeWidth={selected ? 0.55 : 0.22} opacity={0.7} />
-            <circle cx={x} cy={y} r={selected ? 7.4 : 6.4} fill="#101014" stroke={hex} strokeWidth={selected ? 0.7 : 0.35} />
+            <line
+              x1="50"
+              y1="48"
+              x2={x}
+              y2={y}
+              stroke={hex}
+              strokeWidth={selected ? 0.55 : 0.22}
+              opacity={0.7}
+            />
+            <circle
+              cx={x}
+              cy={y}
+              r={selected ? 7.4 : 6.4}
+              fill="#111118"
+              stroke={hex}
+              strokeWidth={selected ? 0.7 : 0.35}
+            />
             <text
               x={x}
               y={y + (y < 48 ? -9.2 : 11.2)}
               textAnchor="middle"
-              fill="#f3efe6"
+              fill="#f5f1e8"
               fontSize="2.4"
               fontFamily="Cinzel, serif"
             >
@@ -119,9 +169,14 @@ export function SundayBoard({
               type="button"
               onClick={() => onSelect(selected ? null : s.id)}
               className="rounded-full border px-3 py-6 text-center sm:py-8"
-              style={{ borderColor: selected ? ACCENT_HEX[s.accent] : "var(--color-border)", background: `${ACCENT_HEX[s.accent]}14` }}
+              style={{
+                borderColor: selected ? ACCENT_HEX[s.accent] : "var(--color-border)",
+                background: `${ACCENT_HEX[s.accent]}14`,
+              }}
             >
-              <div className="font-display text-lg tracking-wide text-fg sm:text-2xl">{s.label}</div>
+              <div className="font-display text-lg tracking-wide text-fg sm:text-2xl">
+                {s.label}
+              </div>
               <div className="mt-2 text-sm text-muted">{s.subtitle}</div>
             </button>
           );
@@ -136,7 +191,10 @@ export function SundayBoard({
               key={p.id}
               type="button"
               onClick={() => onSelect(selected ? null : p.id)}
-              className={cn("rounded-2xl border bg-surface/85 p-4 text-left", dim && "opacity-25")}
+              className={cn(
+                "flex flex-col rounded-2xl border bg-surface/85 p-4 text-left",
+                dim && "opacity-30",
+              )}
               style={{ borderColor: selected ? ACCENT_HEX[p.accent] : "var(--color-border)" }}
             >
               <div className="font-mono text-xs text-gold">{String(i + 1).padStart(2, "0")}</div>
@@ -166,7 +224,11 @@ export function CloseCircuit({
   const cards = entities.filter((e) => e.group !== "stat");
   return (
     <div className="flex h-full min-h-0 flex-col gap-4 overflow-auto p-1 sm:p-2">
-      {quote && <p className="text-center font-display text-xl text-crimson italic sm:text-3xl">“{quote}”</p>}
+      {quote && (
+        <p className="text-center font-display text-xl text-crimson italic sm:text-3xl">
+          “{quote}”
+        </p>
+      )}
       <div className="grid grid-cols-3 gap-2">
         {stats.map((s) => {
           const selected = selectedId === s.id;
@@ -193,7 +255,10 @@ export function CloseCircuit({
               key={c.id}
               type="button"
               onClick={() => onSelect(selected ? null : c.id)}
-              className={cn("rounded-2xl border bg-surface/90 p-4 text-left", dim && "opacity-25")}
+              className={cn(
+                "flex flex-col rounded-2xl border bg-surface/90 p-4 text-left",
+                dim && "opacity-30",
+              )}
               style={{ borderColor: selected ? ACCENT_HEX[c.accent] : "var(--color-border)" }}
             >
               <h3 className="font-display text-lg tracking-wide">{c.label}</h3>

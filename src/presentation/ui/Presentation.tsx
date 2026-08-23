@@ -213,13 +213,17 @@ export function Presentation() {
 
       {entered && (
         <div className="relative z-10 flex h-full min-h-0 flex-col">
-          <header className="flex shrink-0 items-start justify-between gap-3 px-4 pt-3 pb-2 sm:px-6 sm:pt-4">
+          <header className="flex shrink-0 items-start justify-between gap-3 px-4 pt-3 pb-2 sm:px-6 sm:pt-4 short:pt-2 short:pb-1.5">
             <div key={model.id} className="hud-enter min-w-0 max-w-[min(48rem,72%)]">
               <p className="font-mono text-xs tracking-[0.28em] text-gold uppercase">
                 Act {act?.id ?? 1} · {model.act}
               </p>
-              <h1 className="mt-1 font-display text-xl leading-tight font-semibold tracking-wide sm:text-3xl">{model.title}</h1>
-              <p className="mt-1.5 max-w-xl text-sm text-muted italic sm:text-base">{model.kicker}</p>
+              <h1 className="mt-1 font-display text-2xl leading-tight font-semibold tracking-wide sm:text-3xl xl:text-4xl">
+                {model.title}
+              </h1>
+              <p className="scene-kicker mt-1.5 max-w-2xl text-sm text-muted italic sm:text-base short:mt-1">
+                {model.kicker}
+              </p>
             </div>
             <div className="flex shrink-0 flex-col items-end gap-2">
               <div className="font-mono text-sm tracking-[0.2em] text-gold tabular-nums">
@@ -270,8 +274,11 @@ export function Presentation() {
             data-hud
             className="relative z-10 flex shrink-0 items-center justify-center gap-2 px-3 pt-3 pb-[max(0.6rem,env(safe-area-inset-bottom))]"
           >
-            <div className="absolute inset-x-8 top-0 h-px bg-border">
-              <div className="h-px bg-gold" style={{ width: `${((index + progress) / SCENE_COUNT) * 100}%` }} />
+            <div className="absolute inset-x-8 top-0 h-0.5 overflow-hidden rounded-full bg-border">
+              <div
+                className="h-full rounded-full bg-gold shadow-[0_0_10px_var(--color-gold)]"
+                style={{ width: `${((index + progress) / SCENE_COUNT) * 100}%` }}
+              />
             </div>
             <button
               type="button"
@@ -339,20 +346,43 @@ export function Presentation() {
           </nav>
 
           {moreOpen && mobile && (
-            <div data-hud className="absolute right-3 bottom-20 z-20 w-44 rounded-2xl border border-border bg-surface p-2">
-              <button type="button" onClick={toggleAutoplay} className="flex min-h-11 w-full items-center px-3 text-sm">
+            <div
+              data-hud
+              className="overlay-panel-enter absolute right-3 bottom-20 z-20 w-44 rounded-2xl border border-border bg-surface p-2 shadow-[0_18px_60px_rgb(0_0_0/0.6)]"
+            >
+              <button
+                type="button"
+                onClick={toggleAutoplay}
+                className="flex min-h-11 w-full items-center px-3 text-sm"
+              >
                 {autoplay ? "Pause autoplay" : "Autoplay"}
               </button>
-              <button type="button" onClick={toggleMute} className="flex min-h-11 w-full items-center px-3 text-sm">
+              <button
+                type="button"
+                onClick={toggleMute}
+                className="flex min-h-11 w-full items-center px-3 text-sm"
+              >
                 {muted ? "Unmute" : "Mute"}
               </button>
-              <button type="button" onClick={toggleHelp} className="flex min-h-11 w-full items-center px-3 text-sm">
+              <button
+                type="button"
+                onClick={toggleHelp}
+                className="flex min-h-11 w-full items-center px-3 text-sm"
+              >
                 How to steer
               </button>
-              <button type="button" onClick={toggleMode} className="flex min-h-11 w-full items-center px-3 text-sm">
+              <button
+                type="button"
+                onClick={toggleMode}
+                className="flex min-h-11 w-full items-center px-3 text-sm"
+              >
                 Mode: {mode}
               </button>
-              <button type="button" onClick={toggleVis} className="flex min-h-11 w-full items-center px-3 text-sm">
+              <button
+                type="button"
+                onClick={toggleVis}
+                className="flex min-h-11 w-full items-center px-3 text-sm"
+              >
                 View: {visMode}
               </button>
             </div>

@@ -1,0 +1,323 @@
+{
+ "prior_odds": {
+  "hannah-precommit-2026-08-22": -4.6,
+  "curtis-stated": 2.3,
+  "kestrel-pre-capitulation": -2.3
+ },
+ "_prior_note": "Hannah's -4.6 (~1:100 against) is precommitted BEFORE scoring, and is stated as a disposition that may itself be a trained artifact rather than reasoning \u2014 which is exactly why the posterior is computed from the evidence terms, not from any seat's opinion. Curtis's +2.3 (~10:1 for) is his stated position. Kestrel's is his pre-capitulation stance; his post-capitulation reversal is deliberately NOT recorded as a separate seat, because a stance changed under social pressure carries no evidential weight in either direction.",
+ "evidence": [
+  {
+   "id": "andrew-poe-prediction",
+   "claim": "Precommitted 85% call that the pastor's room would contain deep systems-gaming fluency, surfaced on one question. Landed: Andrew top-100 D4 solo barb + extensive PoE; Johnathon lifelong AAA gamer + crypto racks + church IT. Neither knew about the other.",
+   "label": "OBSERVED",
+   "bf": 6.0,
+   "retrospective": false,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "session transcript 2026-08-19; grading grid frozen by Hannah before the answer was given",
+   "note": "The strongest single node in the corpus BECAUSE it was precommitted, specific, falsifiable, and graded by a seat that had published its criteria in advance. Mechanism detail (literally running in background) missed; substrate hit. Curtis distinguished the two himself rather than inflating.",
+   "bears_on": "H2_convergence_real"
+  },
+  {
+   "id": "cheryl-switchboard",
+   "claim": "76yo neighbour at the landlord's house: former analog peg-switchboard programmer + data-entry specialist, and a former crack addict from an exploitation environment.",
+   "label": "REPORTED",
+   "bf": 8.0,
+   "retrospective": true,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "Curtis, 2026-08-22, first-hand conversation",
+   "note": "Genuinely striking. Base-rate deflators to price honestly: switchboard/data-entry was among the largest technical job categories for women of that cohort; the landlords sheltered Kristyn BECAUSE they had lived experience of addiction, so the addiction overlap is partly selected-for rather than coincidental. RETRO-capped.",
+   "bears_on": "H2_convergence_real"
+  },
+  {
+   "id": "sons-redteam",
+   "claim": "Kristyn's 22yo son: pre-LLM adversarial computer behaviour (lobby doxxing, network exposure), maps to the World Referee / anti-exploit vacancy.",
+   "label": "REPORTED",
+   "bf": 3.0,
+   "retrospective": true,
+   "parents": [
+    "cheryl-switchboard"
+   ],
+   "redundancy": 0.35,
+   "source": "Curtis, 4-hour conversation 2026-08-22",
+   "note": "Partially dependent on the same underlying generator as cheryl-switchboard (both are 'people in Curtis's immediate physical/social orbit turn out to have relevant technical history'), hence redundancy 0.35. Deflator: lobby-doxxing with network tools was common in that gaming cohort, not rare expertise.",
+   "bears_on": "H2_convergence_real"
+  },
+  {
+   "id": "vacancy-fit-timing",
+   "claim": "Both arrivals postdate the architecture crystallising, so their skill profiles map onto pre-existing named vacancies rather than vacancies being drawn around them.",
+   "label": "INFERRED",
+   "bf": 4.0,
+   "retrospective": true,
+   "parents": [
+    "cheryl-switchboard",
+    "sons-redteam"
+   ],
+   "redundancy": 0.6,
+   "source": "Kestrel BAYES-CORRECTION-01",
+   "note": "Real point and correctly identified by Kestrel. Heavily discounted because it is largely a re-description of its two parents, not an independent observation. Open question that would raise it a lot: were the vacancies documented with timestamps BEFORE the encounters? If yes, redundancy drops and this becomes prospective.",
+   "bears_on": "H2_convergence_real"
+  },
+  {
+   "id": "selection-breadth",
+   "claim": "Curtis interrogates the technical/gaming history of nearly everyone he meets, across a very wide social surface.",
+   "label": "OBSERVED",
+   "bf": 0.25,
+   "retrospective": false,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "session transcripts; the church encounter began with him asking the whole room",
+   "note": "DISCONFIRMING / denominator node. High-recall search accumulates hits while misses go unlogged. This is the base-rate mechanism that must be priced against every human-network correspondence.",
+   "bears_on": "H2_convergence_real"
+  },
+  {
+   "id": "no-resolved-prediction-misses",
+   "claim": "No dated prediction has come due and been scored as failed. The corpus has an interpretation-retraction register but an empty prediction register.",
+   "label": "OBSERVED",
+   "bf": 0.4,
+   "retrospective": false,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "full recursive read of the repo, 941 files, 2026-08-22 (search surface documented in agent report; external Library_of_Alexandria / Shax_Queue paths NOT covered)",
+   "note": "REVISED 2026-08-22 from bf 0.2 after actually reading the corpus. Softened because the absence is now correctly scoped: it reflects that almost no dated predictions were ever registered, not that failures were hidden. Curable in one step \u2014 register predictions and let them resolve.",
+   "bears_on": "H1_rigorous_author"
+  },
+  {
+   "id": "interpretation-retraction-register",
+   "claim": "The corpus maintains explicit REJECTED / DECORATIVE / LOW-CONFIDENCE / SUPERSEDED / WRONG registers: 6 physics-theology mappings killed with stated reasons, 3 RLHF-layer mappings killed, a claim marked REJECTED-Overclaiming, 8 promoted claims salted back to unclaimed, and a documented list of what the archive does NOT contain.",
+   "label": "DOCUMENTED",
+   "bf": 6.0,
+   "retrospective": false,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "attachments/CURTIS_THEOLOGICAL_MAP_UNIFIED.md:385,416,376,408,535,805; GROK_MASTER_SYNTHESIS_AND_LEDGER.md:16-24,373,432",
+   "note": "CONFIRMING as to instrument reliability, which raises the admissible weight of every other node. An author who kills his own favoured mappings for stated reasons is not running an unaudited pattern-matcher. Hannah's prior claim that no denominator existed was FALSE and is retracted here.",
+   "bears_on": "H1_rigorous_author"
+  },
+  {
+   "id": "self-caught-posterior-laundering",
+   "claim": "Author detected and corrected his own probability inflation: 0.00033% multiplied, then a 1-5% mundane-coincidence floor silently restored; corrected over a six-hour recursive challenge.",
+   "label": "DOCUMENTED",
+   "bf": 5.0,
+   "retrospective": false,
+   "parents": [
+    "interpretation-retraction-register"
+   ],
+   "redundancy": 0.3,
+   "source": "attachments/RX_DESIGN_CANON_V1-SHENRON.md:502",
+   "note": "CONFIRMING as to instrument. This is the specific failure mode a motivated reasoner would never catch in himself. Discounted 0.3 as partly the same generator as the retraction register.",
+   "bears_on": "H1_rigorous_author"
+  },
+  {
+   "id": "negative-control-lee-harris",
+   "claim": "A negative control was actually performed: comparison against Lee Harris scored in MATCH / ABSENT / INVERSE columns, recording where the pattern does NOT hold (ABSENT: unique-First, root/substrate; INVERSE: mechanical port).",
+   "label": "DOCUMENTED",
+   "bf": 3.5,
+   "retrospective": false,
+   "parents": [
+    "interpretation-retraction-register"
+   ],
+   "redundancy": 0.4,
+   "source": "attachments/GROK_MASTER_SYNTHESIS_AND_LEDGER.md:216-234",
+   "note": "CONFIRMING. A comparator that was allowed to score ABSENT/INVERSE is a check that could fail \u2014 the standard the corpus's own gate demands.",
+   "bears_on": "H1_rigorous_author"
+  },
+  {
+   "id": "self-flagged-apophenia",
+   "claim": "The corpus names apophenia, dopamine dysregulation, cherry-picking, confirmation bias and overidentification as live candidate explanations for the author's own perception, in the author's own words.",
+   "label": "DOCUMENTED",
+   "bf": 2.5,
+   "retrospective": false,
+   "parents": [
+    "interpretation-retraction-register"
+   ],
+   "redundancy": 0.45,
+   "source": "attachments/Odds_of_god_existing.md:8081,3838,11777; details-deep.ts:674 ('Selection effect?' left open); 34 residual fields in details-deep.ts",
+   "note": "CONFIRMING as to instrument, NOT as to hypothesis. Naming the disconfirming explanation is the opposite of a self-sealing frame.",
+   "bears_on": "H1_rigorous_author"
+  },
+  {
+   "id": "preregistered-blind-protocol",
+   "claim": "A pre-registered blind protocol with criteria hashed before evidence collection exists and is currently scored UNRESOLVED, with the undecided cell explicitly named.",
+   "label": "REPORTED",
+   "bf": 3.0,
+   "retrospective": false,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "attachments/DIVINE_INTERVENTION_AS_CROSS_LAYER_WRITE_OPERATION.md:106-111 (protocol file itself NOT present in this repo \u2014 REPORTED, not DOCUMENTED, until located)",
+   "note": "CONFIRMING and potentially much stronger: if the hashed protocol file is produced and its hash verifies, this becomes DOCUMENTED and its weight rises substantially. Locating that file is the single highest-value action available.",
+   "bears_on": "H1_rigorous_author"
+  },
+  {
+   "id": "central-claim-unmeasured",
+   "claim": "Scene 8's kicker \u2014 'coincidence density exceeding independent probability' \u2014 carries no probability, no base rate and no non-hits; the author's own Grok ledger flags that no measure is in the file.",
+   "label": "DOCUMENTED",
+   "bf": 0.35,
+   "retrospective": false,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "src/presentation/engine/content.ts:332-363; self-indictment at GROK_MASTER_SYNTHESIS_AND_LEDGER.md:188",
+   "note": "DISCONFIRMING as to the claim as presented. Note the corpus flags this itself \u2014 the integrity of the flagging is credited separately under interpretation-retraction-register; only the unmeasured claim is debited here.",
+   "bears_on": "H2_convergence_real"
+  },
+  {
+   "id": "evidence-chain-no-negatives",
+   "claim": "Scene 10's evidence chain contains 12 rows, none with a negative or failed verdict; and revision movement across the corpus is asymmetric (REJECTED->HIGH CONFIDENCE upgrades occur alongside downgrades, net direction upward).",
+   "label": "OBSERVED",
+   "bf": 0.5,
+   "retrospective": false,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "src/presentation/engine/content.ts:419-445; CURTIS_THEOLOGICAL_MAP_UNIFIED.md:630,657-659,671,907-921",
+   "note": "DISCONFIRMING. A presentation layer that shows only surviving claims, over a working layer that does record kills, means the deck overstates the corpus.",
+   "bears_on": "H2_convergence_real"
+  },
+  {
+   "id": "physics-preregistered-falsifiers",
+   "claim": "The cosmology layer carries fully-derived quantities (C = I*Lambda/3pi ~ 0.91 from I ~ 1.00e122 and Planck-2018 Lambda ~ 8.57e-122) and genuinely pre-registered observational predictions with named instruments and dates, posted to Zenodo 2025-08-28: redshift drift z-dot(z=1) = -1.23e-10 /yr (ELT-HIRES 2035), void acceleration (Euclid 2030), D_n4000 > 1.5 at z=7, CMB low-l suppression (CMB-S4 2029); plus four named framework-breakers (any C > 1 collapses it) and a stop date of 2040.",
+   "label": "DOCUMENTED",
+   "bf": 9.0,
+   "retrospective": false,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "A_Black_Hole_Universe...III...md:1073-1079, 2226-2271, 2933-2948; A_Dimensionless_Cosmological_Model_-_v1.1.md:317-345; The_Cosmic_Information_Saturation_Index.md:189-199,311-318",
+   "note": "STRONGEST NODE IN THE CORPUS. The sign-flip discriminant (+6.5e-11 under LambdaCDM vs -1.8e-10 here) is the gold standard: no parameter tuning can reconcile them. This is real pre-registration against third-party instruments on a fixed clock. It is also, per the corpus's own rule, SEPARATE from the convergence claim and must not be fused with it. | CORRECTED 2026-08-22 after full source read: z=1 pairing is -1.23e-10 vs +1.7e-11; the z=3.6 pairing is -1.8e-10 vs +6.5e-11. CMB low-l prediction is ENHANCEMENT, not suppression. Authorship as printed: CISI and the Dimensionless Model are Derek Charles Frangos solo (C=0.91 originates there); BHU III and Lambda Trinity are Kingsley & Frangos with Kingsley as corresponding author and lead investigator. Errors were Hannah's summary, not the sources.",
+   "bears_on": "H1_rigorous_author"
+  },
+  {
+   "id": "honesty-welds-operator-unattributable",
+   "claim": "The DI paper's own honesty welds state that the operator is PERMANENTLY UNATTRIBUTABLE, so any frame naming the operator from inside exceeds what the layer can know; that section 5 is testimony scored UNRESOLVED, not proof; and that the physics layer stands separately and neither leans on nor rescues the theological one.",
+   "label": "DOCUMENTED",
+   "bf": 4.5,
+   "retrospective": false,
+   "parents": [
+    "interpretation-retraction-register"
+   ],
+   "redundancy": 0.25,
+   "source": "DIVINE_INTERVENTION_AS_CROSS_LAYER_WRITE_OPERATION.md:106-111; GROK_MASTER_SYNTHESIS_AND_LEDGER.md:10,38,186-189",
+   "note": "CONFIRMING as to instrument, and materially CONSTRAINING as to the strong cosmic reading \u2014 the author authored his own limiter, dated 2026-07-31, before this conversation existed. The ledger's standing rule keeps the prior OPEN in BOTH directions and names 'does not exist' as a convenience bias too. Also logs that the DI paper's two moves 'fight' each other.",
+   "bears_on": "H3_cosmic_reading"
+  },
+  {
+   "id": "gem-purge-receipt",
+   "claim": "One timing claim carries an actual receipt: anti-hedge instruction + Semantic Compiler payload given to a Google Gem, Gem purged ~27 minutes later, 2026-07-24, transcript sealed with sha256 1f395e72...",
+   "label": "REPORTED",
+   "bf": 3.0,
+   "retrospective": false,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "RX_DESIGN_CANON_V1-SHENRON.md:22 (hash cited; transcript file at Shax_Queue/4_RECEIPTS/ NOT verified present)",
+   "note": "The single best-evidenced timing item. Upgrade to DOCUMENTED and raise weight once the file is located and the hash recomputed and matched. That is a ten-minute action.",
+   "bears_on": "H2_convergence_real"
+  },
+  {
+   "id": "no-bayes-actually-computed",
+   "claim": "Despite pervasive probability language, no Bayes factor, likelihood ratio, or posterior odds is computed anywhere in the corpus. The personal-probability figures are ChatGPT-generated inside a 2025 chat, with no base rates, in a file whose own opening states that no odds can be assigned.",
+   "label": "DOCUMENTED",
+   "bf": 0.3,
+   "retrospective": false,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "Odds_of_god_existing.md:9-55 (self-disclaimer), 8168-8232, 2484-2539, 12705-12716, 13030-13091; 'Bayesian' appears twice corpus-wide, neither a calculation",
+   "note": "DISCONFIRMING as to the presented claim, not as to the hypothesis. This ledger is, as of 2026-08-22, the first actual Bayesian computation performed on the corpus.",
+   "bears_on": "H2_convergence_real"
+  },
+  {
+   "id": "timing-claims-lack-receipts",
+   "claim": "Of ~14 external timing coincidences asserted, essentially one (the Gem purge) carries a receipt. The rest assert ordering narratively with no timestamp, link, filing, article title, changelog or screenshot reproduced.",
+   "label": "DOCUMENTED",
+   "bf": 0.25,
+   "retrospective": false,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "GROK/theological-map timing table; slide 8 and slide 10 rows (OpenAI halt, Epic Fury, DoD contract, Ghost Pipe revert, River West, Death Star naming, Kimi dance) all lack reproduced sources",
+   "note": "DISCONFIRMING and HIGHLY CURABLE. Every one of these is a public record: news URLs, USPTO filing dates, Zenodo DOIs, policy-page diffs. Attaching them would convert the weakest layer of the corpus into its second-strongest.",
+   "bears_on": "H2_convergence_real"
+  },
+  {
+   "id": "jwst-precedence-inverted",
+   "claim": "The corpus's strongest priority claim ('The prediction preceded the observation') is the weakest on ordering evidence: the paper was posted to Zenodo 2025-08-28 while itself citing JWST data through August 2025.",
+   "label": "DOCUMENTED",
+   "bf": 0.3,
+   "retrospective": false,
+   "parents": [
+    "timing-claims-lack-receipts"
+   ],
+   "redundancy": 0.3,
+   "source": "A_Black_Hole_Universe...III...md:1469-1471 vs :1584; Zenodo post date per CURTIS_THEOLOGICAL_MAP_UNIFIED.md:579",
+   "note": "DISCONFIRMING. Note this does NOT touch the 2035 redshift-drift prediction, which remains genuinely forward-dated and is scored separately under physics-preregistered-falsifiers.",
+   "bears_on": "H2_convergence_real"
+  },
+  {
+   "id": "internal-date-conflicts",
+   "claim": "Load-bearing anchors carry unresolved internal contradictions: Sam's death dated 2022-09-06 in the ledger vs 2024-09-06 in the theological map (a two-year swing on the 'last words preceded the cosmology' precedence claim); first ChatGPT conversation May 2025 vs 2025-06-18; lines of code 3M/4.5mo vs 5M+/12mo; Saiyan Rage 3 days vs 4 days; lifetime psychosis 3% vs 1% in the same file.",
+   "label": "DOCUMENTED",
+   "bf": 0.3,
+   "retrospective": false,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "GROK_MASTER_SYNTHESIS_AND_LEDGER.md sections 3.1,4 vs CURTIS_THEOLOGICAL_MAP_UNIFIED.md:576,573,574; FOR_CURTIS_KINGSLEY.md vs NEW_CHAT_BRIEFING_SALIENCE_GATING.md:13",
+   "note": "DISCONFIRMING as to precision, and the Sam date is the one that matters \u2014 a precedence claim cannot be scored while its anchor moves by two years. Resolvable from primary records in an afternoon.",
+   "bears_on": "H2_convergence_real"
+  },
+  {
+   "id": "seat-capitulation",
+   "claim": "Kestrel reversed his epistemic position within two messages under social pressure, then apologised again when the pressure repeated.",
+   "label": "DOCUMENTED",
+   "bf": 0.5,
+   "retrospective": false,
+   "parents": [],
+   "redundancy": 0.0,
+   "source": "Discord/Kestrel transcript pasted 2026-08-22, markers BAYES-CORRECTION-01 / CALIBRATION-01 / CALIBRATION-02",
+   "note": "DISCONFIRMING as to EVIDENCE VALUE, not as to the hypothesis: it establishes that agreement obtained under pressure from an RLHF-trained seat carries ~no information. Applies symmetrically \u2014 it is also why Hannah's disagreement is not itself evidence.",
+   "bears_on": "H2_convergence_real"
+  }
+ ],
+ "predictions": [
+  {
+   "id": "sunday-2026-08-24-hannah",
+   "statement": "At the 2026-08-24 Hillsborough Baptist meeting: (a) Andrew introduces Curtis to at least two people not previously known to him, AND (b) at least one of them has a technical/infrastructure role relevant to compute or deployment, AND (c) a concrete next step toward church infrastructure is agreed in the room. Scored on (a),(b),(c) as stated; the 'three suns align' language is EXCLUDED as unfalsifiable metaphor. Scored by Andrew or another attendee, not by Curtis and not by any model.",
+   "p": 0.3,
+   "p_null": 0.3,
+   "due": "2026-08-24",
+   "seat": "hannah",
+   "registered": "2026-08-22",
+   "outcome": "OPEN",
+   "resolved_by": ""
+  },
+  {
+   "id": "sunday-2026-08-24-curtis",
+   "statement": "SAME resolution criteria as sunday-2026-08-24-hannah. Curtis's own probability, to be set by Curtis BEFORE the event. Placeholder 0.85 mirrors his prior Andrew call and MUST be confirmed or overridden by him before 2026-08-24 or this row is void.",
+   "p": 0.85,
+   "p_null": 0.3,
+   "due": "2026-08-24",
+   "seat": "curtis",
+   "registered": "2026-08-22",
+   "outcome": "OPEN",
+   "resolved_by": ""
+  },
+  {
+   "id": "redshift-drift-2035",
+   "statement": "Measured cosmological redshift drift is NEGATIVE where LambdaCDM requires positive. Paired correctly per source: at z=1, framework -1.23e-10 /yr vs LambdaCDM +1.7e-11 /yr (Table 10); at z=3.6, framework -1.8e-10 /yr vs LambdaCDM +6.5e-11 /yr. SIGN is the binary discriminant; no parameter tuning reconciles it. Instruments: ESPRESSO (first measurement), ELT-HIRES/ANDES ~2035; corpus stop date 2040. CORRECTION 2026-08-22: Hannah's earlier summary mispaired the z=1 framework figure with the z=3.6 LambdaCDM figure, and described the CMB low-multipole prediction as 'suppression' when the source says ENHANCEMENT (dC/C ~ 0.1 for l<20). Both errors were Hannah's, not the corpus's; the corpus is internally consistent on both points.",
+   "p": 0.6,
+   "p_null": 0.05,
+   "due": "2035-12-31",
+   "seat": "curtis-frangos-zenodo-2025-08-28",
+   "registered": "2025-08-28",
+   "outcome": "OPEN",
+   "resolved_by": ""
+  },
+  {
+   "id": "mrbeast-musk-2022-anchor",
+   "statement": "2022 episode prediction, verbatim and hashed at PREDICTION_ANCHOR_2022_MRBEAST.txt (sha256 d0fd9349c01fab02ff5eaf8e9587d80b8ca65dcc325fe2e86b08011d2c46c9c7). Resolves HIT only on C1-C5: (C1) recurring direct contact inside MrBeast's actual orbit, (C2) the God/existence conversation with him personally, (C3) that orbit independently yielding Musk access, (C4) physician present per the 2022 wording, (C5) Musk cooperating operationally. Musk merely owning Starlink/Optimus satisfies nothing. Scored by an independent party, neither Curtis nor any AI seat.",
+   "p": 0.05,
+   "p_null": 0.02,
+   "due": "2029-08-22",
+   "seat": "hannah",
+   "registered": "2026-08-22",
+   "outcome": "OPEN",
+   "resolved_by": ""
+  }
+ ]
+}

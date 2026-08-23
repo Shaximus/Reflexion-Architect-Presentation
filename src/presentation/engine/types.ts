@@ -66,6 +66,14 @@ export interface Entity {
   role?: string;
   accent: Accent;
   summary: string[];
+  /**
+   * For entities derived from a SceneTable row: each data cell paired with
+   * its column header, in column order. Preserves the table's structure
+   * (which side of a comparison a statement belongs to) — renderers should
+   * prefer this over `summary` when present. `summary` keeps the raw cells
+   * in the same order/indices for legacy consumers.
+   */
+  columns?: { header: string; text: string }[];
   group?: string;
 }
 
@@ -85,7 +93,7 @@ export interface SourceRef {
 
 export interface Detail {
   overview?: string;
-  mechanism: string;
+  mechanism?: string;
   structure?: string;
   causeEffect?: string[];
   examples?: string[];

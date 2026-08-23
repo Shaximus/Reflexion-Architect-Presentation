@@ -1,11 +1,12 @@
 import { Sparkles } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
-import { Suspense, useMemo } from "react";
+import { Suspense, useMemo, useRef } from "react";
 import { getModel } from "@/presentation/engine/enrich";
 import { useDeck } from "@/presentation/engine/store";
 import { Starfield, GroundGlow } from "@/components/presentation/world/Starfield";
 import { CameraRig } from "./CameraRig";
+import { Label3 } from "./primitives";
 import { Scene3D } from "./Scene3D";
 
 function Lights({ accent }: { accent: string }) {
@@ -28,6 +29,13 @@ function Inner({ mobile }: { mobile: boolean }) {
   const accent = model.cards?.[0]?.accent === "teal" ? "#4ecdc4" : "#e94560";
   return (
     <>
+      {/* Font warm-up: drei <Text> suspends ONCE per [font, characters] pair.
+          Mounting one hidden label here forces that suspension to happen at
+          canvas mount — covered by the stage fallback — instead of blanking
+          the whole canvas the first time a scene with labels appears. */}
+      <group visible={false} position={[0, -999, 0]}>
+        <Label3 position={[0, 0, 0]}>·</Label3>
+      </group>
       <Lights accent={accent} />
       <Starfield count={mobile ? 700 : 1500} />
       <GroundGlow />
@@ -47,14 +55,27 @@ function Inner({ mobile }: { mobile: boolean }) {
 }
 
 export function WorldCanvas({ mobile }: { mobile?: boolean }) {
+  // Where the pointer went down, in client coords. onPointerMissed fires on
+  // the click at the END of an OrbitControls drag too; without this guard,
+  // orbiting the camera in EXPLORE mode silently cleared the selection.
+  const down = useRef<{ x: number; y: number } | null>(null);
   return (
-    <div className="h-full min-h-[14rem] w-full overflow-hidden rounded-2xl border border-border/50 bg-void">
+    <div
+      className="h-full min-h-[14rem] w-full overflow-hidden rounded-2xl border border-border/50 bg-void"
+      onPointerDownCapture={(e) => {
+        down.current = { x: e.clientX, y: e.clientY };
+      }}
+    >
       <Canvas
         camera={{ position: [0, 0.8, 12], fov: 42, near: 0.1, far: 220 }}
         dpr={mobile ? [1, 1.2] : [1, 1.55]}
         gl={{ antialias: !mobile, alpha: false, powerPreference: "high-performance" }}
         style={{ width: "100%", height: "100%", background: "#07070a" }}
-        onPointerMissed={() => useDeck.getState().selectEntity(null)}
+        onPointerMissed={(e) => {
+          const d = down.current;
+          if (d && Math.hypot(e.clientX - d.x, e.clientY - d.y) > 8) return; // drag, not a click
+          useDeck.getState().selectEntity(null);
+        }}
       >
         <Suspense fallback={null}>
           <Inner mobile={Boolean(mobile)} />

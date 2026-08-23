@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef, type ReactNode } from "react";
 import * as THREE from "three";
 import { useDeck } from "@/presentation/engine/store";
+import { LABEL_FONT_URL } from "./font";
 
 const ADD = THREE.AdditiveBlending;
 const UP = new THREE.Vector3(0, 1, 0);
@@ -20,6 +21,7 @@ export function Label3({
 }) {
   return (
     <Text
+      font={LABEL_FONT_URL}
       position={position}
       fontSize={size}
       color="#f3efe6"

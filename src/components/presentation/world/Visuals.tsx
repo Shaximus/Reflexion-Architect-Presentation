@@ -1,4 +1,5 @@
 import { Text } from "@react-three/drei";
+import { LABEL_FONT_URL } from "@/presentation/visuals/three/font";
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef, type ReactNode } from "react";
 import * as THREE from "three";
@@ -13,6 +14,7 @@ function noRaycast() {}
 function Label({ children, position }: { children: string; position: [number, number, number] }) {
   return (
     <Text
+      font={LABEL_FONT_URL}
       position={position}
       fontSize={0.2}
       color="#f3efe6"
@@ -80,6 +82,7 @@ function PanelCard({
         <meshBasicMaterial color={color} transparent opacity={active ? 0.18 : 0.08} />
       </mesh>
       <Text
+        font={LABEL_FONT_URL}
         position={[0, subtitle ? 0.18 : 0, size[2] / 2 + 0.04]}
         fontSize={Math.min(0.16, size[0] * 0.07)}
         color="#f3efe6"
@@ -95,6 +98,7 @@ function PanelCard({
       </Text>
       {subtitle ? (
         <Text
+          font={LABEL_FONT_URL}
           position={[0, -0.28, size[2] / 2 + 0.04]}
           fontSize={0.1}
           color="#9a958c"

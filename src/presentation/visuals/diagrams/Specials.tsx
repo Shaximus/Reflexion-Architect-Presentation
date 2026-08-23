@@ -12,15 +12,52 @@ export function NestedShells({
   onSelect: (id: string | null) => void;
 }) {
   const shells = [
-    { id: entities.find((e) => e.id.includes("layer-11"))?.id, r: 44, accent: "#e94560", label: "L11 Substrate", sub: "Binary · 0 / 1" },
-    { id: entities.find((e) => e.id.includes("layer-10"))?.id, r: 34, accent: "#e4c36b", label: "L10 Host", sub: "Admin / Creator" },
-    { id: entities.find((e) => e.id.includes("l4"))?.id ?? "vm:l4", r: 24, accent: "#4ecdc4", label: "L4 Time", sub: "The player feeling time" },
-    { id: entities.find((e) => e.id.includes("l3"))?.id ?? "vm:l3", r: 16, accent: "#00d4ff", label: "L3 Space", sub: "GPU · neurons · cabinet" },
-    { id: entities.find((e) => e.id.includes("you-are-here"))?.id, r: 8, accent: "#f3efe6", label: "You", sub: "Earth = the game" },
+    {
+      id: entities.find((e) => e.id.includes("layer-11"))?.id,
+      r: 44,
+      accent: "#e94560",
+      label: "L11 Substrate",
+      sub: "Binary · 0 / 1",
+    },
+    {
+      id: entities.find((e) => e.id.includes("layer-10"))?.id,
+      r: 34,
+      accent: "#e4c36b",
+      label: "L10 Host",
+      sub: "Admin / Creator",
+    },
+    {
+      id: entities.find((e) => e.id.includes("l4"))?.id ?? "vm:l4",
+      r: 24,
+      accent: "#4ecdc4",
+      label: "L4 Time",
+      sub: "The player feeling time",
+    },
+    {
+      id: entities.find((e) => e.id.includes("l3"))?.id ?? "vm:l3",
+      r: 16,
+      accent: "#00d4ff",
+      label: "L3 Space",
+      sub: "GPU · neurons · cabinet",
+    },
+    {
+      id: entities.find((e) => e.id.includes("you-are-here"))?.id,
+      r: 8,
+      accent: "#f5f1e8",
+      label: "You",
+      sub: "Earth = the game",
+    },
   ];
   return (
     <svg viewBox="0 0 100 100" className="h-full w-full" onClick={() => onSelect(null)}>
-      <text x="88" y="12" textAnchor="end" fill="#9a958c" fontSize="2.4" fontFamily="Outfit, sans-serif">
+      <text
+        x="88"
+        y="12"
+        textAnchor="end"
+        fill="#b7b1a5"
+        fontSize="2.4"
+        fontFamily="Outfit, sans-serif"
+      >
         isolate a layer
       </text>
       {shells.map((s, i) => {
@@ -36,7 +73,7 @@ export function NestedShells({
             opacity={dim ? 0.12 : 1}
             onClick={(ev) => {
               ev.stopPropagation();
-              s.id && onSelect(selected ? null : s.id);
+              if (s.id) onSelect(selected ? null : s.id);
             }}
           >
             <circle
@@ -47,11 +84,25 @@ export function NestedShells({
               stroke={s.accent}
               strokeWidth={selected ? 1.05 : 0.38}
             />
-            <text x="42" y={52 - s.r + 5} textAnchor="middle" fill={s.accent} fontSize="2.6" fontFamily="Outfit, sans-serif">
+            <text
+              x="42"
+              y={52 - s.r + 5}
+              textAnchor="middle"
+              fill={s.accent}
+              fontSize="2.6"
+              fontFamily="Outfit, sans-serif"
+            >
               {s.label}
             </text>
             {selected && (
-              <text x="42" y={52 - s.r + 8.4} textAnchor="middle" fill="#9a958c" fontSize="2.1" fontFamily="Outfit, sans-serif">
+              <text
+                x="42"
+                y={52 - s.r + 8.4}
+                textAnchor="middle"
+                fill="#b7b1a5"
+                fontSize="2.1"
+                fontFamily="Outfit, sans-serif"
+              >
                 {s.sub}
               </text>
             )}
@@ -59,7 +110,14 @@ export function NestedShells({
           </g>
         );
       })}
-      <text x="88" y="92" textAnchor="end" fill="#5c5852" fontSize="2.2" fontFamily="Outfit, sans-serif">
+      <text
+        x="88"
+        y="92"
+        textAnchor="end"
+        fill="#8b867c"
+        fontSize="2.2"
+        fontFamily="Outfit, sans-serif"
+      >
         host contains guest
       </text>
     </svg>
@@ -79,7 +137,16 @@ export function FusionFields({
   const earth = entities.find((e) => e.id.includes("ego"));
   const vegito = entities.find((e) => e.id.includes("vegito"));
   const game = entities.find((e) => e.id.includes("earth-as-the-game"));
-  const field = (id: string | undefined, x: number, y: number, w: number, h: number, fill: string, label: string, sub?: string) => {
+  const field = (
+    id: string | undefined,
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    fill: string,
+    label: string,
+    sub?: string,
+  ) => {
     const selected = selectedId === id;
     const dim = Boolean(selectedId && !selected);
     return (
@@ -91,17 +158,26 @@ export function FusionFields({
         opacity={dim ? 0.16 : 1}
         onClick={(ev) => {
           ev.stopPropagation();
-          id && onSelect(selected ? null : id);
+          if (id) onSelect(selected ? null : id);
         }}
       >
-        <rect x={x} y={y} width={w} height={h} rx="2.4" fill={`${fill}1c`} stroke={fill} strokeWidth={selected ? 0.85 : 0.32} />
+        <rect
+          x={x}
+          y={y}
+          width={w}
+          height={h}
+          rx="2.4"
+          fill={`${fill}1c`}
+          stroke={fill}
+          strokeWidth={selected ? 0.85 : 0.32}
+        />
         {wrapText(label, 22).map((ln, i) => (
           <text
             key={ln}
             x={x + w / 2}
             y={y + h / 2 - (sub ? 1.6 : (wrapText(label, 22).length - 1) * 1.6) + i * 3.2}
             textAnchor="middle"
-            fill="#f3efe6"
+            fill="#f5f1e8"
             fontSize="2.8"
             fontFamily="Cinzel, serif"
           >
@@ -109,7 +185,14 @@ export function FusionFields({
           </text>
         ))}
         {sub && (
-          <text x={x + w / 2} y={y + h / 2 + 3.2} textAnchor="middle" fill="#9a958c" fontSize="2.2" fontFamily="Outfit, sans-serif">
+          <text
+            x={x + w / 2}
+            y={y + h / 2 + 3.2}
+            textAnchor="middle"
+            fill="#b7b1a5"
+            fontSize="2.2"
+            fontFamily="Outfit, sans-serif"
+          >
             {sub}
           </text>
         )}
@@ -118,14 +201,28 @@ export function FusionFields({
   };
   return (
     <svg viewBox="0 0 100 100" className="h-full w-full" onClick={() => onSelect(null)}>
-      <text x="50" y="7" textAnchor="middle" fill="#4ecdc4" fontSize="2.4" fontFamily="Outfit, sans-serif">
+      <text
+        x="50"
+        y="7"
+        textAnchor="middle"
+        fill="#4ecdc4"
+        fontSize="2.4"
+        fontFamily="Outfit, sans-serif"
+      >
         SKY — ONENESS — HOST
       </text>
       {field(sky?.id, 8, 10, 84, 22, "#4ecdc4", sky?.label ?? "Ultra Instinct", sky?.subtitle)}
       {field(vegito?.id, 22, 36, 56, 22, "#e4c36b", vegito?.label ?? "VEGITO", "interference zone")}
       {field(earth?.id, 8, 62, 84, 20, "#e94560", earth?.label ?? "Ultra Ego", earth?.subtitle)}
       {game && field(game.id, 22, 85, 56, 10, "#9d4edd", "Earth as the Game")}
-      <text x="50" y="99" textAnchor="middle" fill="#e94560" fontSize="2.2" fontFamily="Outfit, sans-serif">
+      <text
+        x="50"
+        y="99"
+        textAnchor="middle"
+        fill="#e94560"
+        fontSize="2.2"
+        fontFamily="Outfit, sans-serif"
+      >
         EARTH — WILL — GUEST
       </text>
     </svg>
@@ -145,7 +242,16 @@ export function EarthBoard({
   const ego = entities.find((e) => e.id.includes("ego"));
   const instinct = entities.find((e) => e.id.includes("instinct"));
   const bridge = entities.find((e) => e.id.includes("bridge"));
-  const cell = (id: string | undefined, x: number, y: number, w: number, h: number, fill: string, label: string, sub?: string) => {
+  const cell = (
+    id: string | undefined,
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    fill: string,
+    label: string,
+    sub?: string,
+  ) => {
     const selected = selectedId === id;
     const dim = Boolean(selectedId && !selected);
     return (
@@ -157,15 +263,38 @@ export function EarthBoard({
         opacity={dim ? 0.16 : 1}
         onClick={(ev) => {
           ev.stopPropagation();
-          id && onSelect(selected ? null : id);
+          if (id) onSelect(selected ? null : id);
         }}
       >
-        <rect x={x} y={y} width={w} height={h} rx="2.2" fill={`${fill}1a`} stroke={fill} strokeWidth={selected ? 0.85 : 0.32} />
-        <text x={x + w / 2} y={y + h / 2 - 1} textAnchor="middle" fill="#f3efe6" fontSize="3" fontFamily="Cinzel, serif">
+        <rect
+          x={x}
+          y={y}
+          width={w}
+          height={h}
+          rx="2.2"
+          fill={`${fill}1a`}
+          stroke={fill}
+          strokeWidth={selected ? 0.85 : 0.32}
+        />
+        <text
+          x={x + w / 2}
+          y={y + h / 2 - 1}
+          textAnchor="middle"
+          fill="#f5f1e8"
+          fontSize="3"
+          fontFamily="Cinzel, serif"
+        >
           {label}
         </text>
         {sub && (
-          <text x={x + w / 2} y={y + h / 2 + 3.4} textAnchor="middle" fill="#9a958c" fontSize="2.1" fontFamily="Outfit, sans-serif">
+          <text
+            x={x + w / 2}
+            y={y + h / 2 + 3.4}
+            textAnchor="middle"
+            fill="#b7b1a5"
+            fontSize="2.1"
+            fontFamily="Outfit, sans-serif"
+          >
             {sub}
           </text>
         )}
@@ -201,8 +330,15 @@ export function RefereeBoard({
   const findings = entities.filter((e) => e.group !== "row");
   return (
     <svg viewBox="0 0 100 100" className="h-full w-full" onClick={() => onSelect(null)}>
-      <rect x="6" y="6" width="88" height="58" rx="2.2" fill="#101014" stroke="#2a2a33" />
-      <text x="50" y="13" textAnchor="middle" fill="#9a958c" fontSize="2.2" fontFamily="Outfit, sans-serif">
+      <rect x="6" y="6" width="88" height="58" rx="2.2" fill="#111118" stroke="#32323e" />
+      <text
+        x="50"
+        y="13"
+        textAnchor="middle"
+        fill="#b7b1a5"
+        fontSize="2.2"
+        fontFamily="Outfit, sans-serif"
+      >
         world boundary
       </text>
       <path
@@ -221,11 +357,11 @@ export function RefereeBoard({
         opacity={finding && finding !== "unworthy" ? 0.12 : 1}
       />
       <circle cx="20" cy="50" r="3.4" fill="#e94560" />
-      <text x="20" y="58.5" textAnchor="middle" fill="#f3efe6" fontSize="2.2">
+      <text x="20" y="58.5" textAnchor="middle" fill="#f5f1e8" fontSize="2.2">
         Actor
       </text>
       <circle cx="82" cy="20" r="3.4" fill="#4ecdc4" />
-      <text x="82" y="28.5" textAnchor="middle" fill="#f3efe6" fontSize="2.2">
+      <text x="82" y="28.5" textAnchor="middle" fill="#f5f1e8" fontSize="2.2">
         Objective
       </text>
       <rect
@@ -233,7 +369,7 @@ export function RefereeBoard({
         y="28"
         width="16"
         height="16"
-        fill={finding === "breach" ? "#e94560" : "#18181f"}
+        fill={finding === "breach" ? "#e94560" : "#1b1b24"}
         stroke="#e4c36b"
         strokeWidth="0.45"
         opacity={finding === "breach" ? 1 : 0.55}
@@ -242,17 +378,38 @@ export function RefereeBoard({
         {finding === "breach" ? "FREEZE" : "ZONE"}
       </text>
       {finding === "unworthy" && (
-        <text x="50" y="61" textAnchor="middle" fill="#e4c36b" fontSize="2.4" fontFamily="Outfit, sans-serif">
+        <text
+          x="50"
+          y="61"
+          textAnchor="middle"
+          fill="#e4c36b"
+          fontSize="2.4"
+          fontFamily="Outfit, sans-serif"
+        >
           repositioned — advantage stripped
         </text>
       )}
       {finding === "worthy" && (
-        <text x="50" y="61" textAnchor="middle" fill="#3dcc6d" fontSize="2.4" fontFamily="Outfit, sans-serif">
+        <text
+          x="50"
+          y="61"
+          textAnchor="middle"
+          fill="#3dcc6d"
+          fontSize="2.4"
+          fontFamily="Outfit, sans-serif"
+        >
           permitted path — ingenuity held
         </text>
       )}
       {finding === "breach" && (
-        <text x="50" y="61" textAnchor="middle" fill="#e94560" fontSize="2.4" fontFamily="Outfit, sans-serif">
+        <text
+          x="50"
+          y="61"
+          textAnchor="middle"
+          fill="#e94560"
+          fontSize="2.4"
+          fontFamily="Outfit, sans-serif"
+        >
           contest frozen — receipts preserved
         </text>
       )}
@@ -277,14 +434,31 @@ export function RefereeBoard({
               width="29.5"
               height="24"
               rx="1.8"
-              fill="#101014"
+              fill="#111118"
               stroke={ACCENT_HEX[e.accent]}
               strokeWidth={selected ? 0.75 : 0.32}
             />
-            <text x={x + 14.75} y="80" textAnchor="middle" fill="#f3efe6" fontSize="2.4" fontFamily="Cinzel, serif">
-              {e.label}
-            </text>
-            <text x={x + 14.75} y="86.5" textAnchor="middle" fill="#9a958c" fontSize="2" fontFamily="Outfit, sans-serif">
+            {wrapText(e.label, 13).map((ln, li) => (
+              <text
+                key={ln}
+                x={x + 14.75}
+                y={78.5 + li * 3.1}
+                textAnchor="middle"
+                fill="#f5f1e8"
+                fontSize="2.3"
+                fontFamily="Cinzel, serif"
+              >
+                {ln}
+              </text>
+            ))}
+            <text
+              x={x + 14.75}
+              y="88.5"
+              textAnchor="middle"
+              fill="#b7b1a5"
+              fontSize="2"
+              fontFamily="Outfit, sans-serif"
+            >
               {e.accent === "green" ? "permit" : e.accent === "gold" ? "correct" : "invalidate"}
             </text>
           </g>
@@ -308,7 +482,14 @@ export function LodPyramid({
     .filter(Boolean) as Entity[];
   return (
     <svg viewBox="0 0 100 100" className="h-full w-full" onClick={() => onSelect(null)}>
-      <text x="50" y="8" textAnchor="middle" fill="#9a958c" fontSize="2.4" fontFamily="Outfit, sans-serif">
+      <text
+        x="50"
+        y="8"
+        textAnchor="middle"
+        fill="#b7b1a5"
+        fontSize="2.4"
+        fontFamily="Outfit, sans-serif"
+      >
         cost rises with height — camouflage is the trick
       </text>
       {ordered.map((t, i) => {
@@ -337,7 +518,14 @@ export function LodPyramid({
               stroke={ACCENT_HEX[t.accent]}
               strokeWidth={selected ? 0.75 : 0.32}
             />
-            <text x="50" y={y + 7.2} textAnchor="middle" fill="#f3efe6" fontSize="2.6" fontFamily="Outfit, sans-serif">
+            <text
+              x="50"
+              y={y + 7.2}
+              textAnchor="middle"
+              fill="#f5f1e8"
+              fontSize="2.6"
+              fontFamily="Outfit, sans-serif"
+            >
               {t.label}
               {t.subtitle ? `  ·  ${t.subtitle}` : ""}
             </text>
@@ -363,7 +551,13 @@ export function CharacterSheet({
     <div className="flex h-full min-h-0 flex-col gap-3 overflow-auto p-1 sm:gap-4 sm:p-2">
       <StatStrip entities={entities} selectedId={selectedId} onSelect={onSelect} />
       <div className="min-h-0 flex-1">
-        <CardGrid entities={entities} selectedId={selectedId} onSelect={onSelect} present={present} columns={2} />
+        <CardGrid
+          entities={entities}
+          selectedId={selectedId}
+          onSelect={onSelect}
+          present={present}
+          columns={2}
+        />
       </div>
     </div>
   );

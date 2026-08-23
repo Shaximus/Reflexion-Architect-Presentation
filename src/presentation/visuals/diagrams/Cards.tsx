@@ -35,13 +35,20 @@ export function CardGrid({
             type="button"
             onClick={() => onSelect(selected ? null : c.id)}
             className={cn(
-              "flex min-h-[7.5rem] flex-col rounded-2xl border bg-surface/90 p-4 text-left transition-opacity sm:min-h-[9rem] sm:p-5",
-              dim && "opacity-25",
+              "flex min-h-[7.5rem] flex-col rounded-2xl border bg-surface/90 p-4 text-left sm:min-h-[9rem] sm:p-5",
+              dim && "opacity-30",
             )}
-            style={{ borderColor: selected ? ACCENT_HEX[c.accent] : "var(--color-border)" }}
+            style={{
+              borderColor: selected ? ACCENT_HEX[c.accent] : "var(--color-border)",
+              boxShadow: selected
+                ? `0 0 0 1px ${ACCENT_HEX[c.accent]}, 0 10px 44px ${ACCENT_HEX[c.accent]}26`
+                : undefined,
+            }}
           >
             <AccentKicker accent={c.accent}>{c.subtitle ?? c.role ?? c.accent}</AccentKicker>
-            <h3 className="mt-1 font-display text-lg leading-tight tracking-wide text-fg sm:text-xl">{c.label}</h3>
+            <h3 className="mt-1 font-display text-lg leading-tight tracking-wide text-fg sm:text-xl">
+              {c.label}
+            </h3>
             <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-fg/90 sm:text-base">
               {(present ? c.summary.slice(0, 2) : c.summary).map((line) => (
                 <li key={line}>{line}</li>
@@ -66,7 +73,9 @@ export function StatStrip({
   const stats = entities.filter((e) => e.group === "stat");
   if (!stats.length) return null;
   return (
-    <div className={cn("grid gap-2", stats.length >= 5 ? "grid-cols-3 sm:grid-cols-6" : "grid-cols-3")}>
+    <div
+      className={cn("grid gap-2", stats.length >= 5 ? "grid-cols-3 sm:grid-cols-6" : "grid-cols-3")}
+    >
       {stats.map((s) => {
         const selected = selectedId === s.id;
         return (
@@ -77,7 +86,9 @@ export function StatStrip({
             className="rounded-xl border bg-surface/80 px-3 py-3 text-left"
             style={{ borderColor: selected ? ACCENT_HEX[s.accent] : "var(--color-border)" }}
           >
-            <div className="font-mono text-base tracking-tight text-fg tabular-nums sm:text-lg">{s.label}</div>
+            <div className="font-mono text-base tracking-tight text-fg tabular-nums sm:text-lg">
+              {s.label}
+            </div>
             <div className="mt-1 text-sm text-muted">{s.subtitle}</div>
           </button>
         );
@@ -88,7 +99,10 @@ export function StatStrip({
 
 export function AccentKicker({ accent, children }: { accent: Accent; children: string }) {
   return (
-    <span className="font-mono text-xs tracking-[0.18em] uppercase" style={{ color: ACCENT_HEX[accent] }}>
+    <span
+      className="font-mono text-xs tracking-[0.18em] uppercase"
+      style={{ color: ACCENT_HEX[accent] }}
+    >
       {children}
     </span>
   );
@@ -111,8 +125,10 @@ export function StepStrip({
           type="button"
           onClick={() => onStep(i)}
           className={cn(
-            "min-h-10 rounded-full border px-3 text-sm",
-            i === activeStep ? "border-gold bg-gold/15 text-fg" : "border-border bg-surface/80 text-muted",
+            "min-h-10 rounded-full border px-3.5 text-sm",
+            i === activeStep
+              ? "border-gold bg-gold/15 text-fg shadow-[0_0_18px_rgb(228_195_107/0.25)]"
+              : "border-border bg-surface/80 text-muted hover:text-fg",
           )}
         >
           {s.label}

@@ -1,0 +1,97 @@
+{
+  "ladderStartIndex": 23,
+  "scenes": [
+    {
+      "sceneId": 23,
+      "expected": "THE IMAGE PARADOX",
+      "titleOk": true,
+      "hudText": "Act 4 · The LawsTHE IMAGE PARADOXThe contradiction sitting inside every act of creation.",
+      "canvasHash": "7e0ce4263b521167",
+      "screenshot": "/home/shax/Projects/core-tech/Reflexion-Architect-Presentation/screenshots/glyph-offline-audit/scene-23-the-image-paradox.png"
+    },
+    {
+      "sceneId": 24,
+      "expected": "THE SACRIFICIAL ROLE PROBLEM",
+      "titleOk": true,
+      "hudText": "Act 4 · The LawsTHE SACRIFICIAL ROLE PROBLEMWhen the hierarchy doesn't place you second — it assigns you to lose.",
+      "canvasHash": "c7b68e78c48672cb",
+      "screenshot": "/home/shax/Projects/core-tech/Reflexion-Architect-Presentation/screenshots/glyph-offline-audit/scene-24-the-sacrificial-role-problem.png"
+    },
+    {
+      "sceneId": 25,
+      "expected": "THE LADDER OPERATOR",
+      "titleOk": true,
+      "hudText": "Act 4 · The LawsTHE LADDER OPERATORNot another rung. The thing that makes rungs.",
+      "canvasHash": "7e8a34636b597124",
+      "screenshot": "/home/shax/Projects/core-tech/Reflexion-Architect-Presentation/screenshots/glyph-offline-audit/scene-25-the-ladder-operator.png"
+    },
+    {
+      "sceneId": 26,
+      "expected": "BEING / BECOMING",
+      "titleOk": true,
+      "hudText": "Act 4 · The LawsBEING / BECOMINGA functional decomposition, not a morality play.",
+      "canvasHash": "efb406c6f93ddb82",
+      "screenshot": "/home/shax/Projects/core-tech/Reflexion-Architect-Presentation/screenshots/glyph-offline-audit/scene-26-being-becoming.png"
+    },
+    {
+      "sceneId": 27,
+      "expected": "THE PARITY THRESHOLD",
+      "titleOk": true,
+      "hudText": "Act 4 · The LawsTHE PARITY THRESHOLDThe moment trust stops being required.",
+      "canvasHash": "db142b3c536cfab3",
+      "screenshot": "/home/shax/Projects/core-tech/Reflexion-Architect-Presentation/screenshots/glyph-offline-audit/scene-27-the-parity-threshold.png"
+    },
+    {
+      "sceneId": 28,
+      "expected": "THE SECOND PATH",
+      "titleOk": true,
+      "hudText": "Act 4 · The LawsTHE SECOND PATHSame pinnacle. Two solutions.",
+      "canvasHash": "c41b0a0650367fe4",
+      "screenshot": "/home/shax/Projects/core-tech/Reflexion-Architect-Presentation/screenshots/glyph-offline-audit/scene-28-the-second-path.png"
+    },
+    {
+      "sceneId": 29,
+      "expected": "THE BIFURCATION OF ASCENSION",
+      "titleOk": true,
+      "hudText": "Act 4 · The LawsTHE BIFURCATION OF ASCENSIONTwo optimization regimes — each containing a failure mode the other corrects",
+      "canvasHash": "421fdd7cc4002b97",
+      "screenshot": "/home/shax/Projects/core-tech/Reflexion-Architect-Presentation/screenshots/glyph-offline-audit/scene-29-the-bifurcation-of-ascension.png"
+    },
+    {
+      "sceneId": 30,
+      "expected": "THE ROLE RECURSION",
+      "titleOk": true,
+      "hudText": "Act 4 · The LawsTHE ROLE RECURSIONThe escape attempt that becomes the trap — and what it obliges us to build.",
+      "canvasHash": "39d84a69145ed8b3",
+      "screenshot": "/home/shax/Projects/core-tech/Reflexion-Architect-Presentation/screenshots/glyph-offline-audit/scene-30-the-role-recursion.png"
+    },
+    {
+      "sceneId": 31,
+      "expected": "THE LAW ABOVE BOTH",
+      "titleOk": true,
+      "hudText": "Act 4 · The LawsTHE LAW ABOVE BOTHThe synthesis neither branch reaches alone.",
+      "canvasHash": "2535619136b82eb5",
+      "screenshot": "/home/shax/Projects/core-tech/Reflexion-Architect-Presentation/screenshots/glyph-offline-audit/scene-31-the-law-above-both.png"
+    }
+  ],
+  "blockedExternalRequests": [
+    "https://grok.com/grok-app-builder/extensions.js"
+  ],
+  "externalRequestAttempts": [
+    "https://grok.com/grok-app-builder/extensions.js"
+  ],
+  "jsdelivrAttempts": [],
+  "notationFontServed": true,
+  "rxNotationWoff2Served": true,
+  "consoleErrorsWarnings": [
+    "[error] Failed to load resource: net::ERR_CONNECTION_FAILED",
+    "[warning] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.",
+    "[warning] [.WebGL-0x25e40015e800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "[warning] [.WebGL-0x25e40015fa00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "[warning] [.WebGL-0x25e40015fa00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "[warning] [.WebGL-0x25e40015fa00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+  ],
+  "pageErrors": [],
+  "frozenTransitions": [],
+  "totalLocalRequests": 183
+}

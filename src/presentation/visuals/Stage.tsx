@@ -9,8 +9,27 @@ import { CloseCircuit, PlanetRing, SundayBoard, TitleHero } from "./diagrams/Her
 import { AurisPipe, CascadeStack, EarLoop, EventPath, GateFlow, GovernorLadder, SequenceFlow } from "./diagrams/Flows";
 import { DataTable, MappingTable } from "./diagrams/Tables";
 import { ArcsMap } from "./diagrams/ArcsMap";
+import { ContentBoard } from "./diagrams/LadderBoard";
 
 const WorldCanvas = lazy(() => import("./three/WorldCanvas").then((m) => ({ default: m.WorldCanvas })));
+
+/** Slugs with a bespoke case in the switch below. Anything else that carries
+ *  content fields (cards / stats / rows / table) renders via ContentBoard —
+ *  in BOTH vis modes — instead of falling back to title-only Graph boxes.
+ *  (3D is bypassed for these scenes deliberately: the 3D label font has no
+ *  subscript glyphs, and the Graph3D fallback shows no body text at all.) */
+const ROUTED_SLUGS = new Set([
+  "title", "character", "event", "vm", "fusion", "earth", "planets", "toolkit",
+  "arcs", "built", "canon", "convergence", "ask", "evidence", "auris", "irtg",
+  "sunday", "gate", "lod", "governor", "cascade", "ear", "referee", "genesis", "close",
+]);
+
+function isContentFallback(model: { slug: string; cards?: unknown[]; stats?: unknown[]; rows?: unknown[]; table?: unknown }) {
+  return (
+    !ROUTED_SLUGS.has(model.slug) &&
+    Boolean(model.cards?.length || model.stats?.length || model.rows?.length || model.table)
+  );
+}
 
 function entityForStep(index: number, stepIndex: number) {
   const model = getModel(index);
@@ -34,7 +53,9 @@ export function Stage({ index, compact }: { index: number; compact?: boolean }) 
   const activeStep = useDeck((s) => s.activeStep);
   const setStep = useDeck((s) => s.setStep);
 
-  if (vis === "3d") {
+  const contentFallback = isContentFallback(model);
+
+  if (vis === "3d" && !contentFallback) {
     return (
       <div data-stage className="h-full min-h-0 w-full">
         <Suspense fallback={<div className="flex h-full items-center justify-center font-mono text-sm tracking-wide text-dim">MOUNTING THE WORLD</div>}>
@@ -221,7 +242,9 @@ export function Stage({ index, compact }: { index: number; compact?: boolean }) 
       visual = <CloseCircuit entities={model.entities} selectedId={selectedId} onSelect={onSelect} quote={model.quote} />;
       break;
     default:
-      visual = model.steps ? (
+      visual = contentFallback ? (
+        <ContentBoard model={model} selectedId={selectedId} onSelect={onSelect} />
+      ) : model.steps ? (
         <SequenceFlow entities={model.entities} selectedId={selectedId} onSelect={onSelect} steps={model.steps} activeStep={activeStep} />
       ) : (
         graph

@@ -10,17 +10,28 @@ export function ActNavigator() {
   if (!open) return null;
 
   return (
-    <div data-hud className="pointer-events-auto absolute inset-0 z-20 flex items-center justify-center bg-void/85 p-4 backdrop-blur-md">
+    <div
+      data-hud
+      className="overlay-enter pointer-events-auto absolute inset-0 z-20 flex items-center justify-center bg-void/85 p-4 backdrop-blur-md"
+    >
       <div
-        className="max-h-[88vh] w-full max-w-5xl overflow-y-auto rounded-2xl border border-border bg-surface p-5 sm:p-6"
+        className="overlay-panel-enter max-h-[88vh] w-full max-w-5xl overflow-y-auto rounded-2xl border border-border bg-surface p-5 shadow-[0_24px_90px_rgb(0_0_0/0.6)] sm:p-6"
         style={{ touchAction: "pan-y" }}
       >
         <div className="mb-5 flex items-center justify-between">
           <div>
-            <p className="font-mono text-xs tracking-[0.2em] text-gold uppercase">Knowledge constellation</p>
-            <h2 className="mt-1 font-display text-2xl tracking-wide">Five acts. Twenty-five rooms.</h2>
+            <p className="font-mono text-xs tracking-[0.2em] text-gold uppercase">
+              Knowledge constellation
+            </p>
+            <h2 className="mt-1 font-display text-2xl tracking-wide">
+              Five acts. Twenty-five rooms.
+            </h2>
           </div>
-          <button type="button" onClick={toggle} className="min-h-11 text-sm text-muted hover:text-fg">
+          <button
+            type="button"
+            onClick={toggle}
+            className="min-h-11 text-sm text-muted hover:text-fg"
+          >
             Close
           </button>
         </div>
@@ -31,7 +42,13 @@ export function ActNavigator() {
               const x0 = 40 + ai * 190;
               return (
                 <g key={act.id}>
-                  <text x={x0} y="22" fill="#e4c36b" fontSize="12" fontFamily="JetBrains Mono, monospace">
+                  <text
+                    x={x0}
+                    y="22"
+                    fill="#e4c36b"
+                    fontSize="12"
+                    fontFamily="JetBrains Mono, monospace"
+                  >
                     ACT {act.id} · {act.name.toUpperCase()}
                   </text>
                   {scenes.map((s, si) => {
@@ -39,20 +56,37 @@ export function ActNavigator() {
                     const y = 58 + Math.floor(si / 3) * 44;
                     const current = s.id === index;
                     return (
-                      <g
-                        key={s.id}
-                        className="cursor-pointer"
-                        onClick={() => setIndex(s.id)}
-                      >
-                        <circle cx={x} cy={y} r={current ? 14 : 11} fill={current ? "#e94560" : "#18181f"} stroke={current ? "#e4c36b" : "#2a2a33"} />
-                        <text x={x} y={y + 4} textAnchor="middle" fill="#f3efe6" fontSize="10" fontFamily="JetBrains Mono, monospace">
+                      <g key={s.id} className="cursor-pointer" onClick={() => setIndex(s.id)}>
+                        <circle
+                          cx={x}
+                          cy={y}
+                          r={current ? 14 : 11}
+                          fill={current ? "#e94560" : "#1b1b24"}
+                          stroke={current ? "#e4c36b" : "#32323e"}
+                        />
+                        <text
+                          x={x}
+                          y={y + 4}
+                          textAnchor="middle"
+                          fill="#f5f1e8"
+                          fontSize="10"
+                          fontFamily="JetBrains Mono, monospace"
+                        >
                           {String(s.id + 1).padStart(2, "0")}
                         </text>
                       </g>
                     );
                   })}
                   {ai < ACTS.length - 1 && (
-                    <line x1={x0 + 150} y1="80" x2={x0 + 180} y2="80" stroke="#e4c36b" strokeWidth="1" opacity="0.5" />
+                    <line
+                      x1={x0 + 150}
+                      y1="80"
+                      x2={x0 + 180}
+                      y2="80"
+                      stroke="#e4c36b"
+                      strokeWidth="1"
+                      opacity="0.5"
+                    />
                   )}
                 </g>
               );
@@ -72,10 +106,14 @@ export function ActNavigator() {
                   onClick={() => setIndex(s.id)}
                   className={cn(
                     "rounded-xl border px-4 py-3 text-left",
-                    s.id === index ? "border-crimson bg-crimson/15 text-fg" : "border-border bg-raised text-muted hover:border-gold hover:text-fg",
+                    s.id === index
+                      ? "border-crimson bg-crimson/15 text-fg"
+                      : "border-border bg-raised text-muted hover:border-gold hover:text-fg",
                   )}
                 >
-                  <span className="mr-2 font-mono text-sm text-gold">{String(s.id + 1).padStart(2, "0")}</span>
+                  <span className="mr-2 font-mono text-sm text-gold">
+                    {String(s.id + 1).padStart(2, "0")}
+                  </span>
                   <span className="text-base">{s.title}</span>
                 </button>
               ))}
