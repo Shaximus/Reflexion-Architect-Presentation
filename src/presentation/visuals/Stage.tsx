@@ -6,7 +6,7 @@ import { CardGrid } from "./diagrams/Cards";
 import { Graph } from "./diagrams/Graph";
 import { CharacterSheet, EarthBoard, FusionFields, LodPyramid, NestedShells, RefereeBoard } from "./diagrams/Specials";
 import { CloseCircuit, PlanetRing, SundayBoard, TitleHero } from "./diagrams/Heroes";
-import { AurisPipe, CascadeStack, EarLoop, EventPath, GateFlow, GovernorLadder, SequenceFlow } from "./diagrams/Flows";
+import { AurisPipe, CascadeStack, EarLoop, EventPath, GateFlow, GovernorLadder, SelfNerfFlow, SequenceFlow } from "./diagrams/Flows";
 import { DataTable, MappingTable } from "./diagrams/Tables";
 import { ArcsMap } from "./diagrams/ArcsMap";
 import { ContentBoard } from "./diagrams/LadderBoard";
@@ -22,6 +22,7 @@ const ROUTED_SLUGS = new Set([
   "title", "character", "event", "vm", "fusion", "earth", "planets", "toolkit",
   "arcs", "built", "canon", "convergence", "ask", "evidence", "auris", "irtg",
   "sunday", "gate", "lod", "governor", "cascade", "ear", "referee", "genesis", "close",
+  "self-nerf",
 ]);
 
 function isContentFallback(model: { slug: string; cards?: unknown[]; stats?: unknown[]; rows?: unknown[]; table?: unknown }) {
@@ -237,6 +238,22 @@ export function Stage({ index, compact }: { index: number; compact?: boolean }) 
       break;
     case "genesis":
       visual = <CardGrid entities={model.entities} selectedId={selectedId} onSelect={onSelect} present={present} columns={3} />;
+      break;
+    case "self-nerf":
+      visual = compact ? (
+        <CardGrid entities={model.entities} selectedId={selectedId} onSelect={onSelect} present={present} columns={1} />
+      ) : (
+        <SelfNerfFlow
+          entities={model.entities}
+          selectedId={selectedId}
+          onSelect={onSelect}
+          steps={model.steps}
+          activeStep={activeStep}
+          // The chain stages are diagram scaffolding, not entities — stepping
+          // must not run entityForStep's fuzzy match against the fork cards.
+          onStep={(i) => setStep(i)}
+        />
+      );
       break;
     case "close":
       visual = <CloseCircuit entities={model.entities} selectedId={selectedId} onSelect={onSelect} quote={model.quote} />;

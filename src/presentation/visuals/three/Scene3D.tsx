@@ -4,6 +4,7 @@ import { Earth3D, Fusion3D, Lod3D, Nested3D, Planets3D, Title3D, Toolkit3D } fro
 import { Auris3D, Built3D, Canon3D, Cascade3D, Convergence3D, Ear3D, Gate3D, Governor3D, Graph3D, Referee3D } from "./scenes/System3D";
 import { Ask3D, Character3D, Close3D, Event3D, Evidence3D, Genesis3D, Mapping3D, Sunday3D } from "./scenes/Narrative3D";
 import { Arcs3D } from "./scenes/Arcs3D";
+import { SelfNerf3D } from "./scenes/SelfNerf3D";
 
 export function Scene3D() {
   const index = useDeck((s) => s.index);
@@ -59,6 +60,8 @@ export function Scene3D() {
       return <Genesis3D />;
     case "close":
       return <Close3D />;
+    case "self-nerf":
+      return <SelfNerf3D />;
     default:
       return <Graph3D />;
   }

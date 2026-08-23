@@ -14,6 +14,7 @@ import type { Detail, SourceRef } from "../types";
 import { PHYSICS_DEEP_BY_SCENE } from "./physics";
 import { THEOLOGY_DEEP } from "./theology";
 import { PENTARCHY_DEEP } from "./pentarchy";
+import { EXCHANGE_DEEP_BY_SCENE } from "./derek-exchange";
 
 type DeepBucket = { details: Record<string, Detail>; sources: Record<string, SourceRef[]> };
 
@@ -78,6 +79,13 @@ export const ARCHIVE_DEEP: Record<string, DeepBucket> = (() => {
     const t = bucket(acc, theologyScene(rec.id));
     t.details[rec.id] = rec.detail;
     t.sources[rec.id] = rec.sources;
+  }
+
+  // The Derek exchange — verbatim transcript panels, Discord aliases preserved.
+  for (const [slug, b] of Object.entries(EXCHANGE_DEEP_BY_SCENE)) {
+    const t = bucket(acc, slug);
+    Object.assign(t.details, b.details);
+    Object.assign(t.sources, b.sources);
   }
 
   return acc;
