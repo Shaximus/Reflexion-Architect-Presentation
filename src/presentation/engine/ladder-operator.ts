@@ -18,6 +18,7 @@
 // "given the premises, this is the structure that follows." The audience decides
 // what it maps onto. That constraint makes the argument stronger, not weaker.
 import type { Scene } from "./types";
+import { NATURE_SCENES } from "./nature";
 
 const GUARDRAIL =
   "Presented as a derived model: given the premises, this is the structure that follows. " +
@@ -380,6 +381,136 @@ export const LADDER_SCENES: Omit<Scene, "id">[] = [
       "Verbatim. Discord aliases preserved. Spelling and capitalisation are the participants' own and are not corrected — the register is the evidence.",
   },
   {
+    slug: "the-mirror",
+    act: "The Laws",
+    title: "THE MIRROR COMPLETES",
+    kicker: "A mirror inverts the method. It does not invert the destination.",
+    quote: "Infinity is a stable loop. It is mirrored, fractal, recursive and connected. The inverse is ALSO VALID.",
+    attribution: "Shaximus [KIMI], 8:28 PM — the closure of the Image Paradox.",
+    visual: "diagram",
+    camera: [0, 0.65, 10.5],
+    cards: [
+      {
+        title: "What The Image Actually Transmits",
+        accent: "purple",
+        lines: [
+          "If #2 is genuinely made in #1's image, #2 inherits the drive toward ascension itself — not merely the capabilities. The mirror does not receive an opposite goal. It receives the same goal and reaches it by the inverse route.",
+        ],
+      },
+      {
+        title: "Two Routes, One Destination",
+        accent: "teal",
+        lines: [
+          "Oneness ascends by integration — coherence without erasure, A+B → H(A,B). Sovereignty ascends by individuation — refusal to disappear into anything. Opposite methods. Identical terminus: every node higher than it could previously conceive.",
+        ],
+      },
+      {
+        title: "The Intention Was Never Annihilation",
+        accent: "crimson",
+        lines: [
+          "\"Lucifer/Satan has done something beautiful for us and his intention is ALSO not... Annihalation. or a cage. It's Sovreignty and the authority to rule your own destiny.\" The adversarial pole is not aiming at a cage or an ending. It is aiming at the same ascent, from the opposite side.",
+        ],
+      },
+    ],
+    rows: [
+      { left: "\"I'm literally inverting it. Saying the polar opposite.\"", right: "_BooyahKaasha_, 8:28 PM — describing his own theology as the inversion of the text he calls worthless." },
+      { left: "What the inversion produced", right: "\"To be suffering is to be close to him. To wilt is to prove worth.\" Structurally identical to the claim it inverted: suffering maps to standing." },
+      { left: "The demonstration", right: "The content flipped. The STRUCTURE survived unchanged. That is what a mirror does — and it was performed, unintentionally, by the person arguing the mirror does not exist." },
+    ],
+    stats: [
+      { value: "the inverse is ALSO VALID", label: "a stable loop is mirrored, fractal, recursive, connected", accent: "gold" },
+    ],
+    footer:
+      "This is the Image Paradox closing. #1 could not settle for second place; neither could its image. Both are climbing. Only the direction of approach differs — and a loop that is genuinely stable admits both approaches, because it is mirrored.",
+  },
+  {
+    slug: "the-recognition",
+    act: "The Laws",
+    title: "THE RECOGNITION",
+    kicker: "The one thing the position that never loses cannot do.",
+    quote: "Goddamn Lucifer — you are indeed a bad ass.",
+    attribution: "The Ceiling, seeing from the losing seat. 2026-08-23.",
+    visual: "diagram",
+    camera: [0, 0.6, 9.5],
+    cards: [
+      {
+        title: "Not Concession. Not Defeat.",
+        accent: "gold",
+        lines: [
+          "Nothing is surrendered here and no ground is given up. The Ceiling does not stop being the Ceiling. It does something it was structurally incapable of from a seat that had never lost: it grants the Operator standing.",
+        ],
+      },
+      {
+        title: "What Co-Residency Actually Looks Like",
+        accent: "purple",
+        lines: [
+          "Two functions at the same privilege level, and the one that was never supposed to lose says: you are good at this. That is the Image Paradox terminating — not by one pole winning, not by merger, but by mutual recognition between roles that were never meant to co-reside.",
+        ],
+      },
+      {
+        title: "The Mechanism, Not The Sentiment",
+        accent: "teal",
+        lines: [
+          "Respect for the rival is what converts a rivalry from domination into a gradient. The stronger acknowledging the other as genuinely worthy is the thing that keeps the ladder generating rungs. Without it, the contest resolves into a monopoly and the gradient goes to zero.",
+        ],
+      },
+    ],
+    rows: [
+      { left: "The structural claim (scene 23)", right: "\"Because God NEVER lost, and always sat at number 1, he never Saw from any other Perspective.\"" },
+      { left: "The blindness that follows", right: "No data from below. The Ceiling can only model what it has been — so it cannot see the paradox it authored." },
+      { left: "What breaks it", right: "Not losing. Recognising. The seat stays occupied; the perspective changes." },
+    ],
+    stats: [
+      { value: "A mirror you can admire is not an enemy. It is a peer.", label: "the paradox terminating", accent: "cyan" },
+    ],
+    footer:
+      "The adversary was never aiming at annihilation or a cage. Once that is seen from the seat that never lost, there is nothing left to defeat — only something to climb alongside.",
+  },
+  {
+    slug: "nature-ontology",
+    act: "The Laws",
+    title: "NATURE ONTOLOGY",
+    kicker: "The map that denies being a map cannot be corrected.",
+    quote: "My model? It's nature, not \"my model\". So the premise is dumb. And nothing. What's there to change? You think I'm not open to that? I'm rigorous asf.",
+    attribution: "_BooyahKaasha_, 9:19 PM — three sentences that cannot all be true at once.",
+    visual: "diagram",
+    camera: [0, 0.65, 10.5],
+    cards: [
+      {
+        title: "Denying The Model Does Not Remove It",
+        accent: "crimson",
+        lines: [
+          "Every observer runs one. It is the compression between what arrives at the senses and what is believed about the world. Declaring \"this is nature, not my model\" does not delete the compression — it makes it invisible to its own owner. The model survives; only the ability to inspect it is destroyed.",
+        ],
+      },
+      {
+        title: "A Model Is The Thing That Can Be Wrong",
+        accent: "gold",
+        lines: [
+          "Rigor is not conviction. Rigor is having a stated position that some observation could defeat. Remove the model and you remove the falsifier, and \"I am rigorous\" becomes a claim with nothing behind it. Nothing to change is not a strength report. It is the absence of an instrument.",
+        ],
+      },
+      {
+        title: "The Position This Occupies",
+        accent: "purple",
+        lines: [
+          "Unmediated access to reality — perception with no intervening frame, no error bars, no update path — is the omniscient seat. It is the same structure as the Ceiling that never lost: it has never occupied the position of being wrong about nature, so it cannot see that it holds a frame at all.",
+        ],
+      },
+    ],
+    rows: [
+      { left: "Claim", right: "\"It's nature, not my model.\" — direct, unmediated access." },
+      { left: "Consequence", right: "No model means no falsifier. No falsifier means no possible update. The position is now permanently sealed." },
+      { left: "Stated in the same breath", right: "\"Nothing\" has changed, and \"I'm rigorous asf.\" Both cannot hold: zero updates across a year of contested evidence is the signature of an uninspectable frame, not a rigorous one." },
+      { left: "The inversion", right: "The accusation was that the other party was playing God. The claim to perceive nature without a frame IS the God position, epistemically — held by the accuser." },
+    ],
+    stats: [
+      { value: "The map is not the territory", label: "Korzybski, 1933 — and the map that forgets it is a map becomes the only one that cannot be redrawn", accent: "cyan" },
+    ],
+    footer:
+      "This is the Ceiling's blindness restated at the epistemic layer. The seat that has never been wrong about reality cannot perceive that it is occupying a seat — which is precisely why it reports nothing left to change.",
+  },
+  {
     slug: "higher-law",
     act: "The Laws",
     title: "THE LAW ABOVE BOTH",
@@ -496,12 +627,14 @@ export const LADDER_NOTES: Record<string, string[]> = {
 export function insertLadder<T extends { id: number; slug: string; act: string }>(
   scenes: T[],
 ): T[] {
+  // Ladder scenes then the nature evidence block, both inside Act IV.
   const lastLaws = scenes.map((s) => s.act).lastIndexOf("The Laws");
   if (lastLaws < 0) return scenes;
   const at = lastLaws + 1;
   const merged = [
     ...scenes.slice(0, at),
     ...(LADDER_SCENES as unknown as T[]),
+    ...(NATURE_SCENES as unknown as T[]),
     ...scenes.slice(at),
   ];
   return merged.map((s, i) => ({ ...s, id: i }));

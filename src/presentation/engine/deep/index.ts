@@ -15,6 +15,7 @@ import { PHYSICS_DEEP_BY_SCENE } from "./physics";
 import { THEOLOGY_DEEP } from "./theology";
 import { PENTARCHY_DEEP } from "./pentarchy";
 import { EXCHANGE_DEEP_BY_SCENE } from "./derek-exchange";
+import { NATURE_DEEP_BY_SCENE } from "../nature";
 
 type DeepBucket = { details: Record<string, Detail>; sources: Record<string, SourceRef[]> };
 
@@ -83,6 +84,13 @@ export const ARCHIVE_DEEP: Record<string, DeepBucket> = (() => {
 
   // The Derek exchange — verbatim transcript panels, Discord aliases preserved.
   for (const [slug, b] of Object.entries(EXCHANGE_DEEP_BY_SCENE)) {
+    const t = bucket(acc, slug);
+    Object.assign(t.details, b.details);
+    Object.assign(t.sources, b.sources);
+  }
+
+  // Nature ontology evidence block — five domains plus the collision ledger.
+  for (const [slug, b] of Object.entries(NATURE_DEEP_BY_SCENE)) {
     const t = bucket(acc, slug);
     Object.assign(t.details, b.details);
     Object.assign(t.sources, b.sources);
