@@ -173,10 +173,9 @@ const CEILING: V3 = [-5.8, -0.3, -0.7];
 const OPERATOR: V3 = [-2.4, -0.3, -1.0];
 const TERMINAL: V3 = [-4.15, -1.85, 0.5];
 const CITATION: V3 = [-0.85, -2.1, 0.2];
-// Below the GroundGlow plane, but at view-space z beyond the disc it draws
-// before the disc and stays visible — verified by screenshot at both 1080p
-// and 720p. Moving it up/left collides with the OWNED SUBSTRATE glosses.
-const STAT: V3 = [5.75, -2.55, -0.1];
+// Kept above the GroundGlow cull plane (world y ≈ -2.6) and inside a 720p
+// frustum. Label sits on top of a box relic so it is not drawn under the node.
+const STAT: V3 = [5.05, -1.05, 0.55];
 
 export function SelfNerf3D() {
   const index = useDeck((s) => s.index);
@@ -256,7 +255,9 @@ export function SelfNerf3D() {
           <Relic id={citation.id} color="#e4c36b" position={CITATION} kind="box" size={[2.1, 0.55, 0.14]} label={citation.label} />
         </group>
       )}
-      {stat && <Relic id={stat.id} color="#e4c36b" position={STAT} radius={0.22} label={stat.label} />}
+      {stat && (
+        <Relic id={stat.id} color="#e4c36b" position={STAT} kind="box" size={[2.35, 0.52, 0.12]} label={stat.label} />
+      )}
 
       {/* the packet rides the chain, dips through the owned branch, arrives at YES */}
       <FlowPacket points={packetPath} />

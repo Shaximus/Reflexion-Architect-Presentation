@@ -50,8 +50,9 @@ export function Help() {
           ))}
         </ul>
         <p className="mt-5 text-sm text-dim">
-          Sunday driver: arrows through the acts. Nested containers, Earth is the Game, Fusion,
-          SHENRON, Referee, then Genesis.
+          Sunday driver: arrows through the acts. After the Referee, the Ladder Operator,
+          then the Nature Ontology evidence block — every collision stays on the slide face.
+          Close on Genesis.
         </p>
       </div>
     </div>

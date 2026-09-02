@@ -26,6 +26,16 @@ const SECTION_ORDER: Record<string, Section[]> = {
   "second-path": ["cards", "rows"],
   bifurcation: ["table", "cards"],
   "role-recursion": ["cards", "table", "footer"],
+  "the-exchange": ["cards", "rows", "footer"],
+  "the-mirror": ["cards", "rows", "stats", "footer"],
+  "the-recognition": ["cards", "rows", "stats", "footer"],
+  "nature-ontology": ["cards", "rows", "stats", "footer"],
+  "nature-divergent": ["stats", "cards", "rows", "footer"],
+  "nature-pressure": ["cards", "stats", "rows", "footer"],
+  "nature-locked": ["cards", "stats", "table", "rows", "footer"],
+  "nature-genome": ["stats", "cards", "rows", "footer"],
+  "nature-gradient": ["cards", "stats", "table", "rows", "footer"],
+  "nature-ledger": ["table", "cards", "stats", "footer"],
   "higher-law": ["stats", "rows", "cards", "footer"],
 };
 
@@ -310,16 +320,18 @@ export function ContentBoard({
     );
   });
 
-  // Boards stacking 4+ sections (cards + stats + rows + footer) exceed a
-  // 720p stage at full scale; step the whole board down on short viewports.
+  // Boards stacking 4+ sections, or simply carrying a lot of characters,
+  // exceed a 720p stage at full scale. Step the whole board down on short
+  // viewports so card bodies / table rows / footers stay above the fold.
   const stacked = order.length >= 4;
+  const shortZoom =
+    charWeight(model) > 2200 ? "0.7" : stacked || dense ? "0.8" : null;
 
   return (
     <div
-      className={cn(
-        "h-full min-h-0 w-full overflow-auto p-1 sm:p-2",
-        stacked && "[@media(max-height:840px)]:[zoom:0.82]",
-      )}
+      className="h-full min-h-0 w-full overflow-auto p-1 sm:p-2"
+      data-short-zoom={shortZoom ? "" : undefined}
+      style={shortZoom ? ({ ["--short-zoom"]: shortZoom } as CSSProperties) : undefined}
     >
       <div className={cn("flex min-h-full w-full flex-col justify-center", dense ? "gap-2.5" : "gap-3 sm:gap-4")}>
         {sections}

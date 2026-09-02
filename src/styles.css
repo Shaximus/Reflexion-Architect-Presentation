@@ -4,6 +4,13 @@
    Vertical rhythm tightens under it so rail + stage content fits above the fold. */
 @custom-variant short (@media (max-height: 840px));
 
+/* 720p-class scale-down for dense ContentBoards (set --short-zoom inline). */
+@media (max-height: 840px) {
+  [data-short-zoom] {
+    zoom: var(--short-zoom);
+  }
+}
+
 /* ------------------------------------------------------------------ */
 /* Self-hosted fonts (survives a room with no wifi)                    */
 /* Variable-weight woff2 files served from /public/fonts               */

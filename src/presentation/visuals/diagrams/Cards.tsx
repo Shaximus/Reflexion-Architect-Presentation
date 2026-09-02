@@ -49,8 +49,11 @@ export function CardGrid({
             <h3 className="mt-1 font-display text-lg leading-tight tracking-wide text-fg sm:text-xl">
               {c.label}
             </h3>
-            <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-fg/90 sm:text-base">
-              {(present ? c.summary.slice(0, 2) : c.summary).map((line) => (
+            <ul className={cn(
+              "mt-3 space-y-1.5 text-sm leading-relaxed text-fg/90 sm:text-base",
+              present && "short:mt-2 short:space-y-1 short:text-[0.8125rem] short:leading-snug sm:text-sm",
+            )}>
+              {c.summary.map((line) => (
                 <li key={line}>{line}</li>
               ))}
             </ul>

@@ -64,8 +64,18 @@ export function Presentation() {
   const act = ACTS.find((a) => index >= a.range[0] && index <= a.range[1]);
 
   useEffect(() => {
-    const w = window as unknown as { __setScene?: (n: number) => void };
+    const w = window as unknown as {
+      __setScene?: (n: number) => void;
+      __setVis?: (v: "2d" | "3d") => void;
+      __setMode?: (m: "present" | "explore") => void;
+      __enter?: () => void;
+    };
     w.__setScene = (n: number) => useDeck.getState().setIndex(n);
+    w.__setVis = (v) => useDeck.getState().setVis(v);
+    w.__setMode = (m) => {
+      if (useDeck.getState().mode !== m) useDeck.getState().toggleMode();
+    };
+    w.__enter = () => useDeck.getState().enter();
     const mq = window.matchMedia("(max-width: 720px)");
     const apply = () => setMobile(mq.matches);
     apply();

@@ -530,7 +530,7 @@ export function SelfNerfFlow({
   const nodeCX = (i: number) => nodeX(i) + 140;
 
   return (
-    <div className="flex h-full min-h-0 w-full items-center justify-center p-1 sm:p-2">
+    <div className="flex h-full min-h-0 w-full items-center justify-center overflow-hidden p-1 sm:p-2 short:p-0">
       <svg
         viewBox="0 0 1600 950"
         className="h-full w-full"
