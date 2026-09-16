@@ -3,8 +3,7 @@
 Interactive 2D / 3D teaching deck for the Reflexion argument: nested realities, the 2022
 cross-layer write, the Ladder Operator, and the Nature Ontology evidence block.
 
-First given 24 August 2026 at Hillsborough Baptist Church. Now public, so it can be
-walked in an X Space or a room with no network.
+Public teaching deck. Walk it in an X Space or a room with no network.
 
 **Live deck:** open the preview, press **Enter the Substrate**, arrows to travel.
 **Repo:** [Shaximus/Reflexion-Architect-Presentation](https://github.com/Shaximus/Reflexion-Architect-Presentation)

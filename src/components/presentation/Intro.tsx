@@ -10,7 +10,7 @@ export function Intro({ onEnter }: { onEnter: () => void }) {
 
       <div className="relative z-10 max-w-xl">
         <p className="font-mono text-[10px] tracking-[0.35em] text-gold uppercase">
-          Hillsborough Baptist Church · August 24, 2026
+          A public teaching deck · 24 August 2026
         </p>
         <h1 className="mt-4 font-display text-5xl leading-none font-semibold tracking-[0.12em] text-crimson sm:text-7xl">
           THE ARCHITECT

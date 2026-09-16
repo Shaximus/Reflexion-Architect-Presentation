@@ -15,7 +15,7 @@ const BASE_SCENES: Scene[] = [
     slug: "title",
     act: "The Architect",
     title: "THE ARCHITECT",
-    kicker: "A presentation for Hillsborough Baptist Church",
+    kicker: "A public teaching deck",
     quote: "All complexity is just binary wearing costumes.",
     attribution: "Curtis Kingsley (Shax) · August 24, 2026",
     visual: "title",
@@ -397,7 +397,7 @@ const BASE_SCENES: Scene[] = [
         title: "3. Reference Implementation",
         accent: "green",
         lines: [
-          "Prove the model works at HBC.",
+          "Prove the model works in a first community.",
           "Document the setup for replication.",
           "Share with other churches & civil-society groups.",
           "Atlantic Baptist network as expansion path.",
@@ -702,7 +702,7 @@ const BASE_SCENES: Scene[] = [
       },
       {
         title: "Arrival",
-        subtitle: "9:00 AM · Hillsborough Baptist",
+        subtitle: "9:00 AM",
         accent: "teal",
         lines: ["Character sheet. VM cosmology. Dimensional toolkit."],
       },
@@ -1045,7 +1045,7 @@ const BASE_SCENES: Scene[] = [
       { value: "11D", label: "substrate mapped", accent: "gold" },
       { value: "C ≈ 0.91", label: "information saturation", accent: "teal" },
     ],
-    footer: "Reflexion Software · The Pentarchy · August 24, 2026 · Hillsborough Baptist Church",
+    footer: "Reflexion Software · The Pentarchy · August 24, 2026",
   },
 ];
 
